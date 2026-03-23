@@ -2,34 +2,107 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Exemplo de Estrutura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clube de Aventuras - Cadastro</title>
+    <style>
+        /* Estilos para criar um clima infantil e amigável */
+        body {
+            background-color: #FFDE59; /* Amarelo vibrante */
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 0px #FF914D; /* Sombra sólida para efeito "cartoon" */
+            width: 350px;
+            text-align: center;
+            border: 5px solid #5271FF;
+        }
+
+        h1 {
+            color: #5271FF;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            color: #FF66C4;
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-left: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 3px solid #CBEDD5;
+            border-radius: 15px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #5271FF;
+        }
+
+        button {
+            background-color: #7ED957;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 0px #5F9E44;
+            transition: transform 0.1s;
+        }
+
+        button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px #5F9E44;
+        }
+
+        .decoracao {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Rpg Hexatombe Spin-off </h1>
-    <p>Hexatombe é uma temporada de RPG de mesa transmitida e mestreada por Rafael Lange (Cellbit), finalizada em dezembro de 2025. Esta campanha expande o universo paranornal, funcionando como um spin-off temático, com forte foco em mistério e terror.</p>
-
-    <h2>Personagens</h2>
-    <p>Labirinto: Um dos personagens principais, com destaque para atributos equilibrados.
-        Jae-Yoon (Jae): Um dos personagens descritos como "killers" do grupo.
-        Kemi: Outra personagem integrante do grupo de combate "killers".
-        Henri: Personagem mencionado no contexto do grupo de "killers", como sacrificio.
-        Lena Viegas: Personagem principal da temporada.
-        Dalmo Magno/Manu Magno:Um dos personagens do grupo "killers".</p>
-
-    <h3>Imagens </h3>
-    <ul>
-        <li>Imagens do grupo (li)</li>
-        <li> <a href="https://youtube.com/@ordemparanormal?si=9YHvLswL_wtMfa_6">link externo (a)</a></li>
-    </ul>
-
-    <h4>Gostou? </h4>
-    <p> Vem entrar no universo  de ordemparanormal
-    </p>
+<div class="container">
+    <div class="decoracao">🚀🎨🌈</div>
+    <h1>Entrar na Aventura!</h1>
     
-    <a href="https://static.wikia.nocookie.net/ordemparanormal/images/6/69/Hexatombe_Ep_1.jpg/revision/latest?cb=20251028152306&path-prefix=pt-br">
-        link 
-    </a>
-    
+    <form action="#">
+        <div class="input-group">
+            <label for="nome">Nome da Criança:</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex: Pedro" required>
+        </div>
+
+        <div class="input-group">
+            <label for="email">E-mail do Responsável:</label>
+            <input type="email" id="email" name="email" placeholder="nome@email.com" required>
+        </div>
+
+        <button type="submit">VAMOS LÁ!</button>
+    </form>
+</div>
+
 </body>
-</html
+</html>
