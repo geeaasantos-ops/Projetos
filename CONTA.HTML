@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma e Subtração | Space Kids</title>
+    <style>
+        :root {
+            --bg-espacial: #f5f7fa;
+            --cor-texto: #6c7a89;
+            --cor-pergunta: #a2d2ff;
+            --cor-opcao: #ffffff;
+            --cor-sucesso: #b9fbc0;
+            --cor-tentar: #ffcfd2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-espacial);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Fundo Interativo: Estrelas Cadentes */
+        .fundo-animado {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg, #f0f4ff 0%, #f5f7fa 100%);
+        }
+
+        .estrela-cadente {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #a2d2ff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: queda 4s infinite linear;
+        }
+
+        @keyframes queda {
+            0% { transform: translate(0, 0); opacity: 0; }
+            10% { opacity: 0.5; }
+            50% { transform: translate(100px, 100px); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 35px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            width: 90%;
+            max-width: 450px;
+            border: 4px solid white;
+        }
+
+        .equacao {
+            font-size: 3.5rem;
+            color: var(--cor-pergunta);
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+        }
+
+        .feedback {
+            height: 30px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .grade-respostas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-resposta {
+            background: var(--cor-opcao);
+            border: 2px solid #eef2f7;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #5a6a7a;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .btn-resposta:hover {
+            transform: translateY(-3px);
+            border-color: #a2d2ff;
+        }
+
+        .proximo-btn {
+            margin-top: 30px;
+            background: #a2d2ff;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Animação de acerto */
+        @keyframes balanco {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+        .vitoria { animation: balanco 0.5s ease-in-out; }
+
+    </style>
+</head>
+<body>
+
+    <div class="fundo-animado" id="estrelas"></div>
+
+    <div class="container">
+        <h1 style="color: #8899a6; font-size: 1.2rem;">Mestres da Matemática 🚀</h1>
+        
+        <div id="displayEquacao" class="equacao">5 + 2</div>
+        
+        <div id="feedback" class="feedback">Qual é o resultado?</div>
+
+        <div class="grade-respostas" id="opcoes">
+            </div>
+
+        <button id="btnProximo" class="proximo-btn" onclick="novoProblema()">Outro desafio! ❯</button>
+    </div>
+
+    <script>
+        let resultadoCorreto;
+
+        // Criar as estrelas de fundo
+        function criarEstrelas() {
+            const fundo = document.getElementById('estrelas');
+            for (let i = 0; i < 15; i++) {
+                let e = document.createElement('div');
+                e.className = 'estrela-cadente';
+                e.style.left = Math.random() * 100 + '%';
+                e.style.top = Math.random() * 100 + '%';
+                e.style.animationDelay = Math.random() * 5 + 's';
+                fundo.appendChild(e);
+            }
+        }
+
+        function novoProblema() {
+            const feedback = document.getElementById('feedback');
+            const btnProximo = document.getElementById('btnProximo');
+            const container = document.getElementById('container');
+            
+            feedback.innerText = "Qual é o resultado?";
+            feedback.style.color = "var(--cor-texto)";
+            btnProximo.style.display = "none";
+            document.querySelector('.container').classList.remove('vitoria');
+
+            // Decidir se é soma ou subtração
+            const operacao = Math.random() > 0.5 ? '+' : '-';
+            let n1, n2;
+
+            if (operacao === '+') {
+                n1 = Math.floor(Math.random() * 6) + 1; // 1 a 6
+                n2 = Math.floor(Math.random() * 4) + 1; // 1 a 4
+                resultadoCorreto = n1 + n2;
+            } else {
+                n1 = Math.floor(Math.random() * 6) + 5; // 5 a 10
+                n2 = Math.floor(Math.random() * 4) + 1; // 1 a 4
+                resultadoCorreto = n1 - n2;
+            }
+
+            document.getElementById('displayEquacao').innerText = `${n1} ${operacao} ${n2}`;
+
+            // Gerar opções
+            let respostas = [resultadoCorreto];
+            while(respostas.length < 4) {
+                let erro = resultadoCorreto + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 3) + 1);
+                if(erro >= 0 && !respostas.includes(erro)) respostas.push(erro);
+            }
+            respostas.sort(() => Math.random() - 0.5);
+
+            const gridOpcoes = document.getElementById('opcoes');
+            gridOpcoes.innerHTML = '';
+            respostas.forEach(res => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-resposta';
+                btn.innerText = res;
+                btn.onclick = () => verificar(res);
+                gridOpcoes.appendChild(btn);
+            });
+        }
+
+        function verificar(valor) {
+            const feedback = document.getElementById('feedback');
+            if(valor === resultadoCorreto) {
+                feedback.innerText = "✨ Isso mesmo! Você conseguiu!";
+                feedback.style.color = "#77dd77";
+                document.getElementById('btnProximo').style.display = "inline-block";
+                document.querySelector('.container').classList.add('vitoria');
+            } else {
+                feedback.innerText = "Poderia ser diferente, não acha?";
+                feedback.style.color = "#ffb7b2";
+            }
+        }
+
+        criarEstrelas();
+        novoProblema();
+    </script>
+</body>
+</html>

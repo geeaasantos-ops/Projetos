@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qual a Cor? | Space Kids</title>
+    <style>
+        :root {
+            --bg-pastel: #fdfcf0;
+            --texto: #6b7a8f;
+            /* Cores do Jogo */
+            --rosa: #ffb7b2;
+            --azul: #a2d2ff;
+            --verde: #b9fbc0;
+            --amarelo: #faedcb;
+            --roxo: #e1ccff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-pastel);
+            color: var(--texto);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 500px;
+        }
+
+        /* O Alvo: A cor que a criança deve adivinhar */
+        #corAlvo {
+            width: 150px;
+            height: 150px;
+            border-radius: 30px;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 8px solid white;
+            transition: transform 0.3s;
+        }
+
+        h1 { font-size: 1.5rem; margin-bottom: 10px; }
+
+        #mensagem {
+            height: 30px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #8899a6;
+        }
+
+        /* Opções de botões */
+        .grade-opcoes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-cor {
+            border: none;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s, background-color 0.2s;
+            color: #555;
+        }
+
+        .btn-cor:active {
+            transform: scale(0.95);
+        }
+
+        /* Botão de Próximo */
+        #btnProximo {
+            margin-top: 30px;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            background-color: #a2d2ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            display: none; /* Escondido até acertar */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Qual é esta cor?</h1>
+        <p id="mensagem">Toque no nome da cor certa!</p>
+
+        <div id="corAlvo"></div>
+
+        <div class="grade-opcoes" id="opcoesContainer">
+            </div>
+
+        <button id="btnProximo" onclick="novoJogo()">Próxima Cor ❯</button>
+    </div>
+
+    <script>
+        const cores = [
+            { nome: 'Rosa', hex: '#ffb7b2' },
+            { nome: 'Azul', hex: '#a2d2ff' },
+            { nome: 'Verde', hex: '#b9fbc0' },
+            { nome: 'Amarelo', hex: '#faedcb' },
+            { nome: 'Roxo', hex: '#e1ccff' }
+        ];
+
+        let corCorreta;
+
+        function novoJogo() {
+            // Limpa mensagens e botões
+            document.getElementById('mensagem').innerText = "Toque no nome da cor certa!";
+            document.getElementById('btnProximo').style.display = "none";
+            
+            // Escolhe uma cor aleatória
+            corCorreta = cores[Math.floor(Math.random() * cores.length)];
+            
+            // Aplica ao quadrado central
+            const alvo = document.getElementById('corAlvo');
+            alvo.style.backgroundColor = corCorreta.hex;
+            alvo.style.transform = "scale(1)";
+
+            // Gera os botões
+            const container = document.getElementById('opcoesContainer');
+            container.innerHTML = '';
+            
+            cores.forEach(cor => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-cor';
+                btn.innerText = cor.nome;
+                btn.onclick = () => verificarResposta(cor.nome);
+                container.appendChild(btn);
+            });
+        }
+
+        function verificarResposta(nomeEscolhido) {
+            const msg = document.getElementById('mensagem');
+            
+            if (nomeEscolhido === corCorreta.nome) {
+                msg.innerText = "🌟 Parabéns! Você acertou!";
+                msg.style.color = "#77dd77";
+                document.getElementById('corAlvo').style.transform = "scale(1.1)";
+                document.getElementById('btnProximo').style.display = "inline-block";
+            } else {
+                msg.innerText = "Hum, que tal tentar outra cor?";
+                msg.style.color = "#ffb7b2";
+            }
+        }
+
+        // Inicia o primeiro jogo ao carregar
+        novoJogo();
+    </script>
+</body>
+</html>

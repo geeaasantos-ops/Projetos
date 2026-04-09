@@ -2,34 +2,118 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Exemplo de Estrutura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Space Kids</title>
+    <style>
+        :root {
+            --espacial-escuro: #1a1a2e;
+            --azul-claro: #4d94ff;
+            --texto-claro: #f4f4f9;
+            --cor-acento: #ffcc00; /* Amarelo para TDAH/Atenção */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--espacial-escuro);
+            color: var(--texto-claro);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--azul-claro);
+        }
+
+        h1, h2 {
+            color: var(--cor-acento);
+            text-align: center;
+        }
+
+        .info-empresa {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 20px;
+        }
+
+        .form-contato {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px; /* Evita zoom automático no mobile */
+        }
+
+        button {
+            background-color: var(--cor-acento);
+            color: #000;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            background-color: #ffd633;
+        }
+
+        .acessibilidade-nota {
+            font-size: 0.9em;
+            color: #bbb;
+            font-style: italic;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Rpg Hexatombe Spin-off </h1>
-    <p>Hexatombe é uma temporada de RPG de mesa transmitida e mestreada por Rafael Lange (Cellbit), finalizada em dezembro de 2025. Esta campanha expande o universo paranornal, funcionando como um spin-off temático, com forte foco em mistério e terror.</p>
+    <div class="container">
+        <header>
+            <h1>🚀 Space Kids</h1>
+            <p style="text-align: center;">Transformando a tecnologia em um universo inclusivo.</p>
+        </header>
 
-    <h2>Personagens</h2>
-    <p>Labirinto: Um dos personagens principais, com destaque para atributos equilibrados.
-        Jae-Yoon (Jae): Um dos personagens descritos como "killers" do grupo.
-        Kemi: Outra personagem integrante do grupo de combate "killers".
-        Henri: Personagem mencionado no contexto do grupo de "killers", como sacrificio.
-        Lena Viegas: Personagem principal da temporada.
-        Dalmo Magno/Manu Magno:Um dos personagens do grupo "killers".</p>
+        <section class="info-empresa">
+            <h2>Sobre a Empresa</h2>
+            <p><strong>Desenvolvedora:</strong> Galáxia Kids Solutions</p>
+            <p><strong>Missão:</strong> Criar ferramentas digitais acessíveis para crianças com neurodivergências (TDAH, TEA) e deficiências motoras/cognitivas.</p>
+            <p><strong>Localização:</strong> Hub de Inovação Estelar, São Paulo - SP</p>
+        </section>
 
-    <h3>Imagens </h3>
-    <ul>
-        <li>Imagens do grupo (li)</li>
-        <li> <a href="https://youtube.com/@ordemparanormal?si=9YHvLswL_wtMfa_6">link externo (a)</a></li>
-    </ul>
+        <section>
+            <h2>Fale com o Desenvolvedor</h2>
+            <form class="form-contato" action="#" method="POST">
+                <div>
+                    <label for="nome">Seu Nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Como podemos te chamar?" required>
+                </div>
 
-    <h4>Gostou? </h4>
-    <p> Vem entrar no universo  de ordemparanormal
-    </p>
-    
-    <a href="https://static.wikia.nocookie.net/ordemparanormal/images/6/69/Hexatombe_Ep_1.jpg/revision/latest?cb=20251028152306&path-prefix=pt-br">
-        link 
-    </a>
-    
-</body>
-</html
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div>
+                    <label for="assunto">Como podemos ajudar?</label>
+                    <select id="assunto" name="assunto" style="width: 100%; padding: 12px; border-radius: 8px.

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolhas de Humor | Space Kids</title>
+    <style>
+        :root {
+            --bg-pastel: #f0f4f8;
+            --texto: #5d6d7e;
+            /* Cores dos Humores */
+            --feliz: #fff9ae;
+            --calmo: #b2e2f2;
+            --triste: #d1d1f0;
+            --animado: #ffccf9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-pastel);
+            color: var(--texto);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 30px; }
+
+        /* A Bolha Principal */
+        .bolha-principal {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: var(--feliz);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin: 0 auto 40px;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            animation: flutuar 3s ease-in-out infinite;
+        }
+
+        @keyframes flutuar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Opções de Humores */
+        .opcoes-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .botao-humor {
+            border: none;
+            padding: 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100px;
+        }
+
+        .botao-humor:hover {
+            transform: scale(1.1);
+        }
+
+        .botao-humor span {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .botao-humor label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Classes Dinâmicas via JS */
+        .bg-feliz { background-color: var(--feliz) !important; }
+        .bg-calmo { background-color: var(--calmo) !important; }
+        .bg-triste { background-color: var(--triste) !important; }
+        .bg-animado { background-color: var(--animado) !important; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Como você está se sentindo?</h1>
+
+        <div id="bolhaDisplay" class="bolha-principal">😊</div>
+
+        <div class="opcoes-container">
+            <button class="botao-humor" onclick="mudarHumor('😊', 'bg-feliz')">
+                <span>😊</span>
+                <label>Feliz</label>
+            </button>
+
+            <button class="botao-humor" onclick="mudarHumor('😌', 'bg-calmo')">
+                <span>😌</span>
+                <label>Calmo</label>
+            </button>
+
+            <button class="botao-humor" onclick="mudarHumor('😢', 'bg-triste')">
+                <span>😢</span>
+                <label>Triste</label>
+            </button>
+
+            <button class="botao-humor" onclick="mudarHumor('🤩', 'bg-animado')">
+                <span>🤩</span>
+                <label>Animado</label>
+            </button>
+        </div>
+
+        <p style="margin-top: 40px; font-size: 0.9rem;">Toque no rostinho que combina com você!</p>
+        <button onclick="window.location.href='index.html'" style="margin-top: 10px; border: none; background: none; color: #999; cursor: pointer; text-decoration: underline;">Voltar ao Início</button>
+    </div>
+
+    <script>
+        function mudarHumor(emoji, classeCor) {
+            const bolha = document.getElementById('bolhaDisplay');
+            
+            // Atualiza o Emoji
+            bolha.innerText = emoji;
+
+            // Remove classes de cores anteriores
+            bolha.classList.remove('bg-feliz', 'bg-calmo', 'bg-triste', 'bg-animado');
+            
+            // Adiciona a nova cor
+            bolha.classList.add(classeCor);
+
+            // Pequeno efeito de pulso ao clicar
+            bolha.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                bolha.style.transform = 'scale(1)';
+            }, 200);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qual o Animal? | Space Kids</title>
+    <style>
+        :root {
+            --bg-ceu: #f0f4ff;
+            --cor-texto: #7d8da1;
+            --sucesso: #b9fbc0;
+            --tentar-novamente: #ffcfd2;
+            --botao-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-ceu);
+            color: var(--cor-texto);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Interatividade de Fundo: Estrelas Pulsantes */
+        .fundo-interativo {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .estrela {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: pulsar 3s infinite ease-in-out;
+        }
+
+        @keyframes pulsar {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 0.7; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            max-width: 400px;
+            width: 90%;
+            border: 4px solid white;
+        }
+
+        /* O Animal em destaque */
+        .display-animal {
+            font-size: 6rem;
+            background: white;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feedback-msg {
+            height: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .grade-botoes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-opcao {
+            background: var(--botao-bg);
+            border: 2px solid #eef2f7;
+            padding: 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .btn-opcao:active { transform: scale(0.95); }
+
+        .btn-proximo {
+            margin-top: 25px;
+            background: #a2d2ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fundo-interativo" id="espacoEstelar"></div>
+
+    <div class="container">
+        <h1>Quem é ele?</h1>
+        <div id="animalEmoji" class="display-animal">🐶</div>
+        
+        <div id="feedback" class="feedback-msg">Toque no nome do animal!</div>
+
+        <div class="grade-botoes" id="opcoes">
+            </div>
+
+        <button id="btnNovo" class="btn-proximo" onclick="iniciarJogo()">Jogar de novo! 🚀</button>
+    </div>
+
+    <script>
+        const listaAnimais = [
+            { emoji: '🐶', nome: 'Cachorro' },
+            { emoji: '🐱', nome: 'Gato' },
+            { emoji: '🐘', nome: 'Elefante' },
+            { emoji: '🦁', nome: 'Leão' },
+            { emoji: '🦒', nome: 'Girafa' },
+            { emoji: '🐸', nome: 'Sapo' },
+            { emoji: '🦋', nome: 'Borboleta' }
+        ];
+
+        let animalCerto;
+
+        // Criar estrelas de fundo dinamicamente
+        function criarEstrelas() {
+            const fundo = document.getElementById('espacoEstelar');
+            for (let i = 0; i < 20; i++) {
+                let estrela = document.createElement('div');
+                estrela.className = 'estrela';
+                let tamanho = Math.random() * 10 + 5 + 'px';
+                estrela.style.width = tamanho;
+                estrela.style.height = tamanho;
+                estrela.style.left = Math.random() * 100 + '%';
+                estrela.style.top = Math.random() * 100 + '%';
+                estrela.style.animationDelay = Math.random() * 3 + 's';
+                fundo.appendChild(estrela);
+            }
+        }
+
+        function iniciarJogo() {
+            const feedback = document.getElementById('feedback');
+            const btnNovo = document.getElementById('btnNovo');
+            const display = document.getElementById('animalEmoji');
+            
+            feedback.innerText = "Toque no nome do animal!";
+            feedback.style.color = "var(--cor-texto)";
+            btnNovo.style.display = "none";
+            display.style.transform = "scale(1)";
+
+            // Escolher animal aleatório
+            animalCerto = listaAnimais[Math.floor(Math.random() * listaAnimais.length)];
+            display.innerText = animalCerto.emoji;
+
+            // Criar opções (Certo + 3 errados aleatórios)
+            let opcoes = [animalCerto.nome];
+            while(opcoes.length < 4) {
+                let rando = listaAnimais[Math.floor(Math.random() * listaAnimais.length)].nome;
+                if(!opcoes.includes(rando)) opcoes.push(rando);
+            }
+            opcoes.sort(() => Math.random() - 0.5); // Embaralhar
+
+            const containerOpcoes = document.getElementById('opcoes');
+            containerOpcoes.innerHTML = '';
+            opcoes.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-opcao';
+                btn.innerText = opt;
+                btn.onclick = () => validar(opt);
+                containerOpcoes.appendChild(btn);
+            });
+        }
+
+        function validar(escolha) {
+            const feedback = document.getElementById('feedback');
+            if(escolha === animalCerto.nome) {
+                feedback.innerText = "🌟 Incrível! Você acertou!";
+                feedback.style.color = "#77dd77";
+                document.getElementById('animalEmoji').style.transform = "scale(1.2) rotate(10deg)";
+                document.getElementById('btnNovo').style.display = "inline-block";
+            } else {
+                feedback.innerText = "hum, que tal tentar outra vez?";
+                feedback.style.color = "#ffb7b2";
+            }
+        }
+
+        criarEstrelas();
+        iniciarJogo();
+    </script>
+</body>
+</html>

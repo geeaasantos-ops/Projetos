@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Kids - Jogos Interativos</title>
+    <style>
+        :root {
+            --bege-claro: #fdf6e3;
+            --azul-pastel: #a2d2ff;
+            --rosa-pastel: #ffafcc;
+            --verde-pastel: #b9fbc0;
+            --roxo-pastel: #cdb4db;
+            --texto-cinza: #5a5a5a;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'cursive', sans-serif;
+            background-color: var(--bege-claro);
+            color: var(--texto-cinza);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #7b8fa1;
+            margin-bottom: 10px;
+        }
+
+        .grid-jogos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .card-jogo {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 4px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-jogo:hover {
+            transform: translateY(-10px);
+            border-color: var(--azul-pastel);
+        }
+
+        .icone-jogo {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .card-jogo h2 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+
+        /* Cores específicas para cada botão */
+        .bolhas { background-color: var(--azul-pastel); color: #2b5d80; }
+        .cores { background-color: var(--rosa-pastel); color: #803d55; }
+        .animais { background-color: var(--verde-pastel); color: #3d8042; }
+        .blocos { background-color: var(--roxo-pastel); color: #5a3d80; }
+        
+        .btn-jogar {
+            margin-top: 15px;
+            background: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .grid-jogos { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌟 Space Kids 🌟</h1>
+        <p>Escolha uma aventura divertida hoje!</p>
+    </header>
+
+    <main class="grid-jogos">
+        
+        <a href="file:///C:/Users/GEOVANNAAPARECIDAALE/Documents/Projeto%20Anual/BOLHAS.HTML" class="card-jogo bolhas">
+
+            <div class="icone-jogo">🫧</div>
+            <h2>Bolhas de Humor</h2>
+            <p>Como você está se sentindo agora?</p>
+
+            <button class="btn-jogar">Explorar</button>
+        </a>
+
+        <a href="file:///C:/Users/GEOVANNAAPARECIDAALE/Documents/Projeto%20Anual/CORES.HTML" class="card-jogo cores">
+
+            <div class="icone-jogo">🎨</div>
+            <h2>Qual a Cor?</h2>
+            <p>Vamos descobrir as cores do arco-íris!</p>
+
+            <button class="btn-jogar">Colorir</button>
+        </a>
+
+        <a href="file:///C:/Users/GEOVANNAAPARECIDAALE/Documents/Projeto%20Anual/ANIMAIS.HTML" class="card-jogo animais">
+
+            <div class="icone-jogo">🐶</div>
+            <h2>Qual o Animal?</h2>
+            <p>Ouça os sons e adivinhe o bicho.</p>
+
+            <button class="btn-jogar">Ouvir</button>
+
+        </a>
+
+        <a href="file:///C:/Users/GEOVANNAAPARECIDAALE/Documents/Projeto%20Anual/BLOCOS.HTML" target="_blank" class="card-jogo blocos">
+    
+            <div class="icone-jogo">🧩</div>
+            <h2>Encaixar Blocos</h2>
+            <p>Combine as formas e vença o desafio.</p>
+        
+            <button class="btn-jogar">Montar</button>
+        
+        </a>
+
+        <a href="file:///C:/Users/GEOVANNAAPARECIDAALE/Documents/Projeto%20Anual/CONTA.HTML" class="card-jogo matemática">
+
+            <div class="icone-jogo">🔢</div>
+            <h2>Fazendo Contas</h2>
+            <p>Vamos explorar os números</p>
+            
+            <button class="btn-jogar">Aprender</button>
+        </a>
+
+    </main>
+
+</body>
+</html>
