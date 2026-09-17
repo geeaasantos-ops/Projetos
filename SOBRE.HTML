@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Kids - Galáxia da Inclusão</title>
+
     <style>
         :root {
             --espaco-profundo: #2D3436;
@@ -28,6 +29,16 @@
             border-bottom: 5px solid var(--roxo-magico);
         }
 
+        header h1 {
+            color: var(--branco);
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
         .container {
             max-width: 900px;
             margin: auto;
@@ -41,8 +52,9 @@
             border-radius: 20px;
         }
 
-        h1, h2 {
+        h2 {
             color: var(--azul-claro);
+            text-align: center;
         }
 
         .missao-texto {
@@ -51,7 +63,7 @@
             padding-left: 20px;
         }
 
-        /* Grid de Mini Apps */
+
         .grid-apps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -90,6 +102,77 @@
             margin-bottom: 10px;
         }
 
+
+        #depoimentos {
+            text-align: center;
+        }
+
+        #depoimento-container {
+            background: var(--branco);
+            color: var(--espaco-profundo);
+            max-width: 650px;
+            margin: 30px auto 20px;
+            padding: 35px;
+            border-radius: 20px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.4s ease;
+        }
+
+        #depoimento-container h3 {
+            color: #6C5CE7;
+            margin-bottom: 5px;
+        }
+
+        #depoimento-container .cargo {
+            color: #7d7d7d;
+            font-size: 0.9rem;
+            margin-top: 0;
+        }
+
+        #depoimento-container .texto {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .aspas {
+            font-size: 40px;
+            color: var(--rosa-suave);
+            line-height: 20px;
+        }
+
+        /* Bolinhas */
+
+        #dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            border: none;
+            background-color: #777;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot:hover {
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background-color: var(--rosa-suave);
+            transform: scale(1.3);
+        }
+
         footer {
             text-align: center;
             padding: 40px;
@@ -98,6 +181,7 @@
         }
     </style>
 </head>
+
 <body>
 
 <header>
@@ -106,55 +190,304 @@
 </header>
 
 <div class="container">
-    
+
+
+
     <section id="sobre">
         <h2>Por que o Space Kids existe?</h2>
+
         <div class="missao-texto">
-            <p>No universo, não existem duas estrelas iguais. Algumas brilham mais rápido, outras têm cores diferentes, e todas são essenciais. O <strong>Space Kids</strong> nasceu para ser um porto seguro para crianças com <strong>TDAH, Autismo e diferentes deficiências</strong>.</p>
-            <p>Nosso objetivo é transformar o aprendizado em uma jornada sensorial calma, divertida e sem pressões, respeitando o tempo e o foco de cada pequeno astronauta.</p>
+
+            <p>
+                No universo, não existem duas estrelas iguais.
+                Algumas brilham mais rápido, outras têm cores diferentes,
+                e todas são essenciais.
+                O <strong>Space Kids</strong> nasceu para ser um porto seguro
+                para crianças com <strong>TDAH, Autismo e diferentes deficiências</strong>.
+            </p>
+
+            <p>
+                Nosso objetivo é transformar o aprendizado em uma jornada
+                sensorial calma, divertida e sem pressões, respeitando o tempo
+                e o foco de cada pequeno astronauta.
+            </p>
+
         </div>
     </section>
 
+
+
     <section id="apps">
+
         <h2>Nossos Mini Aplicativos Interativos</h2>
+
         <p>Explore ferramentas feitas para estimular e acolher:</p>
-        
+
         <div class="grid-apps">
+
             <div class="card-app">
+
                 <div class="icon-app">🧩</div>
+
                 <div class="tag">FOCO & TDAH</div>
+
                 <h3>Nebulosa do Silêncio</h3>
-                <p>Quebra-cabeças visuais com sons relaxantes para ajudar na concentração.</p>
+
+                <p>
+                    Quebra-cabeças visuais com sons relaxantes
+                    para ajudar na concentração.
+                </p>
+
             </div>
 
+
             <div class="card-app">
+
                 <div class="icon-app">🎨</div>
+
                 <div class="tag">SENSORIAL</div>
+
                 <h3>Pintura Estelar</h3>
-                <p>Desenhos com alto contraste e feedbacks táteis para exploração motora.</p>
+
+                <p>
+                    Desenhos com alto contraste e feedbacks táteis
+                    para exploração motora.
+                </p>
+
             </div>
 
+
             <div class="card-app">
+
                 <div class="icon-app">🧘</div>
+
                 <div class="tag">EMOÇÕES</div>
+
                 <h3>Respiro Lunar</h3>
-                <p>Guia visual de respiração para momentos de ansiedade ou crise sensorial.</p>
+
+                <p>
+                    Guia visual de respiração para momentos de
+                    ansiedade ou crise sensorial.
+                </p>
+
             </div>
 
+
             <div class="card-app">
+
                 <div class="icon-app">🎵</div>
+
                 <div class="tag">AUDITIVO</div>
+
                 <h3>Sons do Cosmo</h3>
-                <p>Associe sons a imagens em um jogo de memória auditiva simplificado.</p>
+
+                <p>
+                    Associe sons a imagens em um jogo de memória
+                    auditiva simplificado.
+                </p>
+
             </div>
+
         </div>
+
+    </section>
+
+
+
+    <section id="depoimentos">
+
+        <h2>💜 O que nossos clientes dizem</h2>
+
+        <p>
+            Veja o que algumas famílias e educadores acham
+            da experiência Space Kids:
+        </p>
+
+        <div id="depoimento-container">
+
+        </div>
+
+        <div id="dots-container">
+
+        </div>
+
     </section>
 
 </div>
 
+
 <footer>
-    <p>&copy; 2026 Space Kids - Tecnologia Assistiva e Diversão</p>
+
+    <p>
+        &copy; 2026 Space Kids - Tecnologia Assistiva e Diversão
+    </p>
+
 </footer>
+
+
+<script>
+
+
+    const depoimentos = [
+
+        {
+            nome: "Maria Silva",
+            cargo: "Mãe de uma pequena astronauta",
+            texto: "O Space Kids tornou os momentos de aprendizado muito mais tranquilos e divertidos para minha filha."
+        },
+
+        {
+            nome: "Carlos Oliveira",
+            cargo: "Professor de Educação Infantil",
+            texto: "As atividades são simples, acolhedoras e ajudam as crianças a aprenderem respeitando o próprio ritmo."
+        },
+
+        {
+            nome: "Ana Santos",
+            cargo: "Responsável por uma criança",
+            texto: "Minha filha adorou a Pintura Estelar! Foi muito bonito vê-la explorando a atividade sem se sentir pressionada."
+        },
+
+        {
+            nome: "Juliana Costa",
+            cargo: "Professora e educadora",
+            texto: "O Space Kids apresenta uma proposta inclusiva e divertida que pode ajudar bastante no desenvolvimento infantil."
+        }
+
+    ];
+
+
+
+    let indiceAtual = 0;
+
+
+
+    const container = document.getElementById("depoimento-container");
+
+    const dotsContainer = document.getElementById("dots-container");
+
+
+
+    function mostrarDepoimento(indice) {
+
+        const depoimento = depoimentos[indice];
+
+        container.innerHTML = `
+
+            <div class="aspas">“</div>
+
+            <h3>${depoimento.nome}</h3>
+
+            <p class="cargo">${depoimento.cargo}</p>
+
+            <p class="texto">
+                ${depoimento.texto}
+            </p>
+
+        `;
+
+
+
+        const dots = document.querySelectorAll(".dot");
+
+        dots.forEach((dot, index) => {
+
+            dot.classList.remove("active");
+
+            if (index === indice) {
+
+                dot.classList.add("active");
+
+            }
+
+        });
+
+    }
+
+
+
+    function criarDots() {
+
+        depoimentos.forEach((_, index) => {
+
+            const dot = document.createElement("button");
+
+            dot.classList.add("dot");
+
+            dot.setAttribute(
+                "aria-label",
+                `Mostrar depoimento ${index + 1}`
+            );
+
+
+
+            dot.addEventListener("click", function() {
+
+                indiceAtual = index;
+
+                mostrarDepoimento(indiceAtual);
+
+                reiniciarTemporizador();
+
+            });
+
+
+            dotsContainer.appendChild(dot);
+
+        });
+
+    }
+
+
+
+    function proximoDepoimento() {
+
+        indiceAtual++;
+
+
+        if (indiceAtual >= depoimentos.length) {
+
+            indiceAtual = 0;
+
+        }
+
+        mostrarDepoimento(indiceAtual);
+
+    }
+
+
+
+    let temporizador;
+
+
+    function iniciarTemporizador() {
+
+        temporizador = setInterval(
+            proximoDepoimento,
+            5000
+        );
+
+    }
+
+
+
+    function reiniciarTemporizador() {
+
+        clearInterval(temporizador);
+
+        iniciarTemporizador();
+
+    }
+
+
+
+    criarDots();
+
+    mostrarDepoimento(indiceAtual);
+
+    iniciarTemporizador();
+
+</script>
 
 </body>
 </html>

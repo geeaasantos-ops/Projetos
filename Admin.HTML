@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Space Kids - Administração</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         LOGIN
+    ========================== -->
+
+    <section class="login-section" id="loginSection">
+
+        <div class="login-box">
+
+            <div class="logo">🚀</div>
+
+            <h1>Space Kids</h1>
+
+            <p>Painel Administrativo</p>
+
+            <input
+                type="text"
+                id="usuario"
+                placeholder="Usuário"
+            >
+
+            <input
+                type="password"
+                id="senha"
+                placeholder="Senha"
+            >
+
+            <button onclick="login()">
+                Entrar
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <section id="dashboard" class="dashboard hidden">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+                🚀
+                <span>Space Kids</span>
+            </div>
+
+            <nav>
+
+                <button
+                    class="menu-btn active"
+                    onclick="mostrarPagina('inicio', this)"
+                >
+                    🏠 Início
+                </button>
+
+                <button
+                    class="menu-btn"
+                    onclick="mostrarPagina('criancas', this)"
+                >
+                    👧 Crianças
+                </button>
+
+                <button
+                    class="menu-btn"
+                    onclick="mostrarPagina('atividades', this)"
+                >
+                    🎯 Atividades
+                </button>
+
+                <button
+                    class="menu-btn"
+                    onclick="mostrarPagina('sessoes', this)"
+                >
+                    📅 Sessões
+                </button>
+
+                <button
+                    class="menu-btn"
+                    onclick="mostrarPagina('configuracoes', this)"
+                >
+                    ⚙️ Configurações
+                </button>
+
+            </nav>
+
+            <button class="logout-btn" onclick="logout()">
+                🚪 Sair
+            </button>
+
+        </aside>
+
+
+        <!-- CONTEÚDO -->
+
+        <main class="content">
+
+            <!-- =====================
+                 INÍCIO
+            ====================== -->
+
+            <div id="inicio" class="pagina">
+
+                <div class="topo">
+
+                    <div>
+                        <h1>Olá, administrador! 👋</h1>
+                        <p>
+                            Bem-vindo ao painel do Space Kids.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="cards">
+
+                    <div class="card">
+                        <div class="card-icon">👧</div>
+
+                        <div>
+                            <h3>Crianças</h3>
+                            <strong id="totalCriancas">
+                                0
+                            </strong>
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+
+                        <div>
+                            <h3>Atividades</h3>
+                            <strong id="totalAtividades">
+                                0
+                            </strong>
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-icon">📅</div>
+
+                        <div>
+                            <h3>Sessões</h3>
+                            <strong id="totalSessoes">
+                                0
+                            </strong>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="welcome-box">
+
+                    <h2>🌟 Espaço de acompanhamento</h2>
+
+                    <p>
+                        O painel administrativo permite acompanhar
+                        crianças, atividades e sessões do Space Kids
+                        de maneira simples e organizada.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 CRIANÇAS
+            ====================== -->
+
+            <div id="criancas" class="pagina hidden">
+
+                <div class="pagina-header">
+
+                    <div>
+                        <h1>👧 Crianças</h1>
+
+                        <p>
+                            Cadastre e acompanhe as crianças.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-box">
+
+                    <h2>Adicionar criança</h2>
+
+                    <div class="form-grid">
+
+                        <input
+                            type="text"
+                            id="nome"
+                            placeholder="Nome da criança"
+                        >
+
+                        <input
+                            type="number"
+                            id="idade"
+                            placeholder="Idade"
+                            min="1"
+                            max="18"
+                        >
+
+                        <input
+                            type="text"
+                            id="responsavel"
+                            placeholder="Nome do responsável"
+                        >
+
+                        <select id="tipo">
+
+                            <option value="">
+                                Necessidade / perfil
+                            </option>
+
+                            <option value="TDAH">
+                                TDAH
+                            </option>
+
+                            <option value="Autismo">
+                                Autismo
+                            </option>
+
+                            <option value="Deficiência visual">
+                                Deficiência visual
+                            </option>
+
+                            <option value="Deficiência auditiva">
+                                Deficiência auditiva
+                            </option>
+
+                            <option value="Outro">
+                                Outro
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="adicionarCrianca()"
+                    >
+                        + Adicionar criança
+                    </button>
+
+                </div>
+
+
+                <div class="table-box">
+
+                    <h2>Crianças cadastradas</h2>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Nome</th>
+                                <th>Idade</th>
+                                <th>Responsável</th>
+                                <th>Perfil</th>
+                                <th>Ação</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelaCriancas">
+                        </tbody>
+
+                    </table>
+
+                    <p
+                        id="semCriancas"
+                        class="empty-message"
+                    >
+                        Nenhuma criança cadastrada.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 ATIVIDADES
+            ====================== -->
+
+            <div id="atividades" class="pagina hidden">
+
+                <div class="pagina-header">
+
+                    <div>
+
+                        <h1>🎯 Atividades</h1>
+
+                        <p>
+                            Gerencie as atividades disponíveis.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-box">
+
+                    <h2>Nova atividade</h2>
+
+                    <div class="form-grid">
+
+                        <input
+                            type="text"
+                            id="nomeAtividade"
+                            placeholder="Nome da atividade"
+                        >
+
+                        <select id="categoriaAtividade">
+
+                            <option value="">
+                                Categoria
+                            </option>
+
+                            <option value="Foco">
+                                Foco
+                            </option>
+
+                            <option value="Sensorial">
+                                Sensorial
+                            </option>
+
+                            <option value="Emoções">
+                                Emoções
+                            </option>
+
+                            <option value="Auditivo">
+                                Auditivo
+                            </option>
+
+                        </select>
+
+                        <input
+                            type="text"
+                            id="descricaoAtividade"
+                            placeholder="Descrição"
+                        >
+
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="adicionarAtividade()"
+                    >
+                        + Adicionar atividade
+                    </button>
+
+                </div>
+
+
+                <div class="activity-grid" id="listaAtividades">
+
+                    <p
+                        id="semAtividades"
+                        class="empty-message"
+                    >
+                        Nenhuma atividade cadastrada.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 SESSÕES
+            ====================== -->
+
+            <div id="sessoes" class="pagina hidden">
+
+                <div class="pagina-header">
+
+                    <div>
+
+                        <h1>📅 Sessões</h1>
+
+                        <p>
+                            Registre e acompanhe as sessões.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-box">
+
+                    <h2>Nova sessão</h2>
+
+                    <div class="form-grid">
+
+                        <input
+                            type="text"
+                            id="nomeSessao"
+                            placeholder="Nome da criança"
+                        >
+
+                        <input
+                            type="date"
+                            id="dataSessao"
+                        >
+
+                        <select id="atividadeSessao">
+
+                            <option value="">
+                                Atividade realizada
+                            </option>
+
+                            <option value="Nebulosa do Silêncio">
+                                Nebulosa do Silêncio
+                            </option>
+
+                            <option value="Pintura Estelar">
+                                Pintura Estelar
+                            </option>
+
+                            <option value="Respiro Lunar">
+                                Respiro Lunar
+                            </option>
+
+                            <option value="Sons do Cosmo">
+                                Sons do Cosmo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="adicionarSessao()"
+                    >
+                        + Registrar sessão
+                    </button>
+
+                </div>
+
+
+                <div class="table-box">
+
+                    <h2>Sessões realizadas</h2>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Criança</th>
+                                <th>Data</th>
+                                <th>Atividade</th>
+                                <th>Ação</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelaSessoes">
+                        </tbody>
+
+                    </table>
+
+                    <p
+                        id="semSessoes"
+                        class="empty-message"
+                    >
+                        Nenhuma sessão registrada.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 CONFIGURAÇÕES
+            ====================== -->
+
+            <div id="configuracoes" class="pagina hidden">
+
+                <div class="pagina-header">
+
+                    <div>
+
+                        <h1>⚙️ Configurações</h1>
+
+                        <p>
+                            Configure o painel administrativo.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-box">
+
+                    <div class="setting">
+
+                        <div>
+
+                            <h3>🔔 Notificações</h3>
+
+                            <p>
+                                Receber notificações do sistema.
+                            </p>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="notificacoes"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting">
+
+                        <div>
+
+                            <h3>🌙 Modo escuro</h3>
+
+                            <p>
+                                Alterar aparência do painel.
+                            </p>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="modoEscuro"
+                                onchange="alternarModoEscuro()"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting">
+
+                        <div>
+
+                            <h3>🔐 Segurança</h3>
+
+                            <p>
+                                Usuário atual: administrador
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="secondary-btn"
+                            onclick="alterarSenha()"
+                        >
+                            Alterar senha
+                        </button>
+
+                    </div>
+
+
+                    <div class="setting">
+
+                        <div>
+
+                            <h3>🚀 Space Kids</h3>
+
+                            <p>
+                                Onde cada estrela brilha do seu próprio jeito!
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

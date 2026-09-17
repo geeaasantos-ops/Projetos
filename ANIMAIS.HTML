@@ -1,214 +1,927 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Qual o Animal? | Space Kids</title>
+
+
     <style>
+
+
         :root {
+
             --bg-ceu: #f0f4ff;
+
             --cor-texto: #7d8da1;
+
             --sucesso: #b9fbc0;
+
             --tentar-novamente: #ffcfd2;
+
             --botao-bg: #ffffff;
         }
 
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-ceu);
-            color: var(--cor-texto);
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
-            position: relative;
+
+        /* =========================
+           CONFIGURAÇÕES GERAIS
+        ========================= */
+
+        * {
+            box-sizing: border-box;
         }
 
-        /* Interatividade de Fundo: Estrelas Pulsantes */
+
+        body {
+
+            font-family:
+                'Segoe UI',
+                Arial,
+                sans-serif;
+
+            background-color:
+                var(--bg-ceu);
+
+            color:
+                var(--cor-texto);
+
+            margin: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 100vh;
+
+            overflow: hidden;
+
+            position: relative;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           FUNDO INTERATIVO
+        ========================= */
+
         .fundo-interativo {
-            position: absolute;
+
+            position: fixed;
+
             width: 100%;
+
             height: 100%;
+
+            top: 0;
+
+            left: 0;
+
             z-index: -1;
+
             overflow: hidden;
         }
+
 
         .estrela {
+
             position: absolute;
+
             background: white;
+
             border-radius: 50%;
+
             opacity: 0.5;
-            animation: pulsar 3s infinite ease-in-out;
+
+            animation:
+                pulsar 3s infinite ease-in-out;
         }
+
 
         @keyframes pulsar {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.5); opacity: 0.7; }
+
+            0%,
+            100% {
+
+                transform: scale(1);
+
+                opacity: 0.3;
+            }
+
+            50% {
+
+                transform: scale(1.5);
+
+                opacity: 0.7;
+            }
         }
 
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
         .container {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
+
+            background:
+                rgba(255, 255, 255, 0.7);
+
+            backdrop-filter:
+                blur(10px);
+
             padding: 30px;
+
             border-radius: 40px;
+
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0, 0, 0, 0.05);
+
             max-width: 400px;
+
             width: 90%;
+
             border: 4px solid white;
         }
 
-        /* O Animal em destaque */
-        .display-animal {
-            font-size: 6rem;
-            background: white;
-            width: 140px;
-            height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            box-shadow: inset 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        h1 {
+
+            color: #7d8da1;
+
+            font-size: 1.8rem;
+
+            margin-top: 0;
+
+            margin-bottom: 20px;
         }
 
+
+        /* =========================
+           ANIMAL
+        ========================= */
+
+        .display-animal {
+
+            font-size: 6rem;
+
+            background: white;
+
+            width: 140px;
+
+            height: 140px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                0 auto 20px;
+
+            border-radius: 50%;
+
+            box-shadow:
+                inset 0 5px 15px
+                rgba(0, 0, 0, 0.05);
+
+            transition:
+                transform 0.4s
+                cubic-bezier(
+                    0.175,
+                    0.885,
+                    0.32,
+                    1.275
+                );
+        }
+
+
+        /* =========================
+           FEEDBACK
+        ========================= */
+
         .feedback-msg {
-            height: 25px;
+
+            min-height: 25px;
+
             font-weight: bold;
+
             margin-bottom: 20px;
+
             font-size: 1.1rem;
         }
 
+
+        /* =========================
+           BOTÕES DE OPÇÕES
+        ========================= */
+
         .grade-botoes {
+
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1fr 1fr;
+
             gap: 15px;
         }
 
+
         .btn-opcao {
-            background: var(--botao-bg);
-            border: 2px solid #eef2f7;
+
+            background:
+                var(--botao-bg);
+
+            border:
+                2px solid #eef2f7;
+
             padding: 15px;
+
             border-radius: 20px;
+
             font-size: 1rem;
+
             font-weight: bold;
+
             color: #666;
+
             cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+
+            transition:
+                all 0.2s;
+
+            box-shadow:
+                0 4px 6px
+                rgba(0, 0, 0, 0.02);
         }
 
-        .btn-opcao:active { transform: scale(0.95); }
+
+        .btn-opcao:hover:not(:disabled) {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                #a2d2ff;
+        }
+
+
+        .btn-opcao:active:not(:disabled) {
+
+            transform:
+                scale(0.95);
+        }
+
+
+        .btn-opcao:disabled {
+
+            cursor: default;
+
+            opacity: 0.85;
+        }
+
+
+        /* =========================
+           BOTÃO NOVO JOGO
+        ========================= */
 
         .btn-proximo {
+
             margin-top: 25px;
-            background: #a2d2ff;
+
+            background:
+                #a2d2ff;
+
             color: white;
+
             border: none;
-            padding: 12px 25px;
+
+            padding:
+                12px 25px;
+
             border-radius: 50px;
+
             font-weight: bold;
+
             cursor: pointer;
+
             display: none;
+
+            transition:
+                transform 0.2s,
+                background-color 0.2s;
         }
+
+
+        .btn-proximo:hover {
+
+            transform:
+                scale(1.05);
+
+            background-color:
+                #8bc5f5;
+        }
+
+
+        /* =========================
+           BOTÃO VOLTAR
+        ========================= */
+
+        .voltar {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #999;
+
+            cursor: pointer;
+
+            text-decoration: underline;
+
+            font-size: 0.9rem;
+
+            transition:
+                color 0.2s,
+                transform 0.2s;
+        }
+
+
+        .voltar:hover {
+
+            color:
+                #7d8da1;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 15px;
+            }
+
+
+            .container {
+
+                padding: 25px;
+
+                width: 95%;
+            }
+
+
+            h1 {
+
+                font-size: 1.5rem;
+            }
+
+
+            .display-animal {
+
+                width: 120px;
+
+                height: 120px;
+
+                font-size: 5rem;
+            }
+
+
+            .btn-opcao {
+
+                padding: 13px;
+
+                font-size: 0.95rem;
+            }
+        }
+
     </style>
+
 </head>
+
+
 <body>
 
-    <div class="fundo-interativo" id="espacoEstelar"></div>
 
-    <div class="container">
-        <h1>Quem é ele?</h1>
-        <div id="animalEmoji" class="display-animal">🐶</div>
-        
-        <div id="feedback" class="feedback-msg">Toque no nome do animal!</div>
+    <!-- =========================
+         FUNDO
+    ========================= -->
 
-        <div class="grade-botoes" id="opcoes">
-            </div>
-
-        <button id="btnNovo" class="btn-proximo" onclick="iniciarJogo()">Jogar de novo! 🚀</button>
+    <div
+        class="fundo-interativo"
+        id="espacoEstelar">
     </div>
 
+
+    <!-- =========================
+         JOGO
+    ========================= -->
+
+    <div class="container">
+
+
+        <h1>
+            Quem é ele? 🐾
+        </h1>
+
+
+        <!-- ANIMAL -->
+
+        <div
+            id="animalEmoji"
+            class="display-animal"
+            aria-live="polite"
+            aria-label="Animal da rodada"
+        >
+            🐶
+        </div>
+
+
+        <!-- FEEDBACK -->
+
+        <div
+            id="feedback"
+            class="feedback-msg"
+            aria-live="polite"
+        >
+            Toque no nome do animal!
+        </div>
+
+
+        <!-- OPÇÕES -->
+
+        <div
+            class="grade-botoes"
+            id="opcoes"
+        >
+        </div>
+
+
+        <!-- NOVO JOGO -->
+
+        <button
+            type="button"
+            id="btnNovo"
+            class="btn-proximo"
+            onclick="iniciarJogo()"
+        >
+            Jogar de novo! 🚀
+        </button>
+
+
+        <!-- VOLTAR -->
+
+        <a
+            href="PÁGINA.HTML"
+            class="voltar"
+        >
+            ← Voltar ao Início
+        </a>
+
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
     <script>
+
+
+        /* =========================
+           LISTA DE ANIMAIS
+        ========================= */
+
         const listaAnimais = [
-            { emoji: '🐶', nome: 'Cachorro' },
-            { emoji: '🐱', nome: 'Gato' },
-            { emoji: '🐘', nome: 'Elefante' },
-            { emoji: '🦁', nome: 'Leão' },
-            { emoji: '🦒', nome: 'Girafa' },
-            { emoji: '🐸', nome: 'Sapo' },
-            { emoji: '🦋', nome: 'Borboleta' }
+
+            {
+                emoji: '🐶',
+                nome: 'Cachorro'
+            },
+
+            {
+                emoji: '🐱',
+                nome: 'Gato'
+            },
+
+            {
+                emoji: '🐘',
+                nome: 'Elefante'
+            },
+
+            {
+                emoji: '🦁',
+                nome: 'Leão'
+            },
+
+            {
+                emoji: '🦒',
+                nome: 'Girafa'
+            },
+
+            {
+                emoji: '🐸',
+                nome: 'Sapo'
+            },
+
+            {
+                emoji: '🦋',
+                nome: 'Borboleta'
+            }
+
         ];
+
+
+        /* Animal correto da rodada */
 
         let animalCerto;
 
-        // Criar estrelas de fundo dinamicamente
+
+        /* =========================
+           CRIAR ESTRELAS
+        ========================= */
+
         function criarEstrelas() {
-            const fundo = document.getElementById('espacoEstelar');
-            for (let i = 0; i < 20; i++) {
-                let estrela = document.createElement('div');
-                estrela.className = 'estrela';
-                let tamanho = Math.random() * 10 + 5 + 'px';
-                estrela.style.width = tamanho;
-                estrela.style.height = tamanho;
-                estrela.style.left = Math.random() * 100 + '%';
-                estrela.style.top = Math.random() * 100 + '%';
-                estrela.style.animationDelay = Math.random() * 3 + 's';
-                fundo.appendChild(estrela);
+
+            const fundo =
+                document.getElementById(
+                    'espacoEstelar'
+                );
+
+
+            for (
+                let i = 0;
+                i < 20;
+                i++
+            ) {
+
+                const estrela =
+                    document.createElement(
+                        'div'
+                    );
+
+
+                estrela.className =
+                    'estrela';
+
+
+                const tamanho =
+                    Math.random() * 10 + 5;
+
+
+                estrela.style.width =
+                    tamanho + 'px';
+
+
+                estrela.style.height =
+                    tamanho + 'px';
+
+
+                estrela.style.left =
+                    Math.random() * 100 + '%';
+
+
+                estrela.style.top =
+                    Math.random() * 100 + '%';
+
+
+                estrela.style.animationDelay =
+                    Math.random() * 3 + 's';
+
+
+                fundo.appendChild(
+                    estrela
+                );
             }
         }
+
+
+        /* =========================
+           INICIAR JOGO
+        ========================= */
 
         function iniciarJogo() {
-            const feedback = document.getElementById('feedback');
-            const btnNovo = document.getElementById('btnNovo');
-            const display = document.getElementById('animalEmoji');
-            
-            feedback.innerText = "Toque no nome do animal!";
-            feedback.style.color = "var(--cor-texto)";
-            btnNovo.style.display = "none";
-            display.style.transform = "scale(1)";
 
-            // Escolher animal aleatório
-            animalCerto = listaAnimais[Math.floor(Math.random() * listaAnimais.length)];
-            display.innerText = animalCerto.emoji;
+            const feedback =
+                document.getElementById(
+                    'feedback'
+                );
 
-            // Criar opções (Certo + 3 errados aleatórios)
-            let opcoes = [animalCerto.nome];
-            while(opcoes.length < 4) {
-                let rando = listaAnimais[Math.floor(Math.random() * listaAnimais.length)].nome;
-                if(!opcoes.includes(rando)) opcoes.push(rando);
+
+            const btnNovo =
+                document.getElementById(
+                    'btnNovo'
+                );
+
+
+            const display =
+                document.getElementById(
+                    'animalEmoji'
+                );
+
+
+            const containerOpcoes =
+                document.getElementById(
+                    'opcoes'
+                );
+
+
+            /* Resetar informações */
+
+            feedback.innerText =
+                "Toque no nome do animal!";
+
+
+            feedback.style.color =
+                "var(--cor-texto)";
+
+
+            btnNovo.style.display =
+                "none";
+
+
+            display.style.transform =
+                "scale(1)";
+
+
+            /* =========================
+               ESCOLHER ANIMAL
+            ========================= */
+
+            const indice =
+                Math.floor(
+                    Math.random() *
+                    listaAnimais.length
+                );
+
+
+            animalCerto =
+                listaAnimais[indice];
+
+
+            display.innerText =
+                animalCerto.emoji;
+
+
+            /* =========================
+               CRIAR OPÇÕES
+            ========================= */
+
+            const opcoes =
+                [animalCerto.nome];
+
+
+            /*
+             Adiciona animais diferentes
+             até chegar a 4 opções.
+            */
+
+            while (
+                opcoes.length < 4
+            ) {
+
+                const indiceAleatorio =
+                    Math.floor(
+                        Math.random() *
+                        listaAnimais.length
+                    );
+
+
+                const nome =
+                    listaAnimais[
+                        indiceAleatorio
+                    ].nome;
+
+
+                if (
+                    !opcoes.includes(nome)
+                ) {
+
+                    opcoes.push(nome);
+                }
             }
-            opcoes.sort(() => Math.random() - 0.5); // Embaralhar
 
-            const containerOpcoes = document.getElementById('opcoes');
-            containerOpcoes.innerHTML = '';
-            opcoes.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = 'btn-opcao';
-                btn.innerText = opt;
-                btn.onclick = () => validar(opt);
-                containerOpcoes.appendChild(btn);
-            });
+
+            /* =========================
+               EMBARALHAR
+            ========================= */
+
+            opcoes.sort(
+                () =>
+                    Math.random() - 0.5
+            );
+
+
+            /* Limpar opções antigas */
+
+            containerOpcoes.innerHTML =
+                '';
+
+
+            /* =========================
+               CRIAR BOTÕES
+            ========================= */
+
+            opcoes.forEach(
+                function (opcao) {
+
+                    const btn =
+                        document.createElement(
+                            'button'
+                        );
+
+
+                    btn.type =
+                        'button';
+
+
+                    btn.className =
+                        'btn-opcao';
+
+
+                    btn.innerText =
+                        opcao;
+
+
+                    btn.onclick =
+                        function () {
+
+                            validar(
+                                opcao,
+                                btn
+                            );
+
+                        };
+
+
+                    containerOpcoes.appendChild(
+                        btn
+                    );
+
+                }
+            );
         }
 
-        function validar(escolha) {
-            const feedback = document.getElementById('feedback');
-            if(escolha === animalCerto.nome) {
-                feedback.innerText = "🌟 Incrível! Você acertou!";
-                feedback.style.color = "#77dd77";
-                document.getElementById('animalEmoji').style.transform = "scale(1.2) rotate(10deg)";
-                document.getElementById('btnNovo').style.display = "inline-block";
-            } else {
-                feedback.innerText = "hum, que tal tentar outra vez?";
-                feedback.style.color = "#ffb7b2";
+
+        /* =========================
+           VALIDAR RESPOSTA
+        ========================= */
+
+        function validar(
+            escolha,
+            botaoClicado
+        ) {
+
+            const feedback =
+                document.getElementById(
+                    'feedback'
+                );
+
+
+            const display =
+                document.getElementById(
+                    'animalEmoji'
+                );
+
+
+            const btnNovo =
+                document.getElementById(
+                    'btnNovo'
+                );
+
+
+            /* =========================
+               RESPOSTA CORRETA
+            ========================= */
+
+            if (
+                escolha ===
+                animalCerto.nome
+            ) {
+
+                feedback.innerText =
+                    "🌟 Incrível! Você acertou!";
+
+
+                feedback.style.color =
+                    "#77dd77";
+
+
+                display.style.transform =
+                    "scale(1.2) rotate(10deg)";
+
+
+                btnNovo.style.display =
+                    "inline-block";
+
+
+                /* Desativar opções */
+
+                const botoes =
+                    document.querySelectorAll(
+                        '.btn-opcao'
+                    );
+
+
+                botoes.forEach(
+                    function (botao) {
+
+                        botao.disabled =
+                            true;
+
+                    }
+                );
+
+
+                /* Destacar resposta correta */
+
+                botaoClicado.style.backgroundColor =
+                    "#b9fbc0";
+
+
+                botaoClicado.style.borderColor =
+                    "#77dd77";
+            }
+
+
+            /* =========================
+               RESPOSTA ERRADA
+            ========================= */
+
+            else {
+
+                feedback.innerText =
+                    "Hum... tente outra vez! 🚀";
+
+
+                feedback.style.color =
+                    "#ff9f9f";
+
+
+                botaoClicado.style.backgroundColor =
+                    "#ffcfd2";
+
+
+                botaoClicado.style.borderColor =
+                    "#ff9f9f";
+
+
+                /*
+                 Voltar o botão ao normal
+                 depois de alguns segundos.
+                */
+
+                setTimeout(
+                    function () {
+
+                        botaoClicado.style.backgroundColor =
+                            "";
+
+                        botaoClicado.style.borderColor =
+                            "";
+
+                    },
+                    600
+                );
             }
         }
+
+
+        /* =========================
+           INICIAR
+        ========================= */
 
         criarEstrelas();
+
         iniciarJogo();
+
+
     </script>
+
+
 </body>
+
 </html>

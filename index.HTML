@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clube de Aventuras - Cadastro</title>
+    <title>Space Kids - Cadastro</title>
+
     <style>
-        /* Estilos para criar um clima infantil e amigável */
         body {
-            background-color: #FFDE59; /* Amarelo vibrante */
+            background-color: #FFDE59;
             font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
         }
 
@@ -20,7 +20,7 @@
             background-color: white;
             padding: 30px;
             border-radius: 30px;
-            box-shadow: 0 10px 0px #FF914D; /* Sombra sólida para efeito "cartoon" */
+            box-shadow: 0 10px 0px #FF914D;
             width: 350px;
             text-align: center;
             border: 5px solid #5271FF;
@@ -69,7 +69,11 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 5px 0px #5F9E44;
-            transition: transform 0.1s;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
         }
 
         button:active {
@@ -81,30 +85,73 @@
             font-size: 40px;
             margin-bottom: 10px;
         }
+
+        .admin-btn {
+            display: block;
+            margin-top: 25px;
+            background-color: #5271FF;
+            box-shadow: 0 5px 0px #354fc2;
+            text-decoration: none;
+            color: white;
+            padding: 12px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
 
 <div class="container">
+
     <div class="decoracao">🚀🎨🌈</div>
+
     <h1>Entrar na Aventura!</h1>
-    
-    <form action="#">
+
+    <form>
         <div class="input-group">
             <label for="nome">Nome da Criança:</label>
-            <input type="text" id="nome" name="nome" placeholder="Ex: Pedro" required>
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Ex: Pedro"
+                required
+            >
         </div>
 
         <div class="input-group">
             <label for="email">E-mail do Responsável:</label>
-            <input type="email" id="email" name="email" placeholder="nome@email.com" required>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="email@exemplo.com"
+                required
+            >
         </div>
 
-        <a href="file:///C:/Users/GEOVANNAAPARECIDAALE/Documents/Projeto%20Anual/P%C3%81GINA.HTML" target="_blank">
-            <button type="button">VAMOS LÁ!</button>
-        </a>
+        <button type="submit">
+            VAMOS LÁ! 🚀
+        </button>
     </form>
+
+    <!-- BOTÃO PARA ÁREA ADMINISTRATIVA -->
+    <a href="Admin.html" class="admin-btn">
+        ⚙️ Área Administrativa
+    </a>
+
 </div>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        alert("Cadastro realizado! 🚀");
+
+        window.open("Página.HTML", "_blank");
+    });
+</script>
 
 </body>
 </html>
