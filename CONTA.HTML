@@ -41,9 +41,6 @@
             padding: 20px;
         }
 
-        /* =========================
-           FUNDO ANIMADO
-        ========================= */
 
         .fundo-animado {
             position: fixed;
@@ -100,9 +97,6 @@
             }
         }
 
-        /* =========================
-           CONTAINER PRINCIPAL
-        ========================= */
 
         .container {
             background: rgba(255, 255, 255, 0.85);
@@ -127,9 +121,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* =========================
-           TÍTULO
-        ========================= */
 
         .titulo {
             color: #8899a6;
@@ -139,9 +130,6 @@
             margin-top: 0;
         }
 
-        /* =========================
-           EQUAÇÃO
-        ========================= */
 
         .equacao {
             font-size: 3.5rem;
@@ -155,9 +143,6 @@
             letter-spacing: 5px;
         }
 
-        /* =========================
-           FEEDBACK
-        ========================= */
 
         .feedback {
             min-height: 30px;
@@ -171,9 +156,6 @@
             transition: color 0.3s;
         }
 
-        /* =========================
-           OPÇÕES
-        ========================= */
 
         .grade-respostas {
             display: grid;
@@ -218,9 +200,6 @@
             opacity: 0.8;
         }
 
-        /* =========================
-           BOTÃO PRÓXIMO
-        ========================= */
 
         .proximo-btn {
             margin-top: 30px;
@@ -252,9 +231,6 @@
             background: #8bc5f5;
         }
 
-        /* =========================
-           BOTÃO VOLTAR
-        ========================= */
 
         .voltar-btn {
             display: inline-block;
@@ -274,9 +250,6 @@
             color: #6c7a89;
         }
 
-        /* =========================
-           ANIMAÇÃO DE ACERTO
-        ========================= */
 
         @keyframes balanco {
 
@@ -298,9 +271,6 @@
             animation: balanco 0.5s ease-in-out;
         }
 
-        /* =========================
-           RESPONSIVIDADE
-        ========================= */
 
         @media (max-width: 600px) {
 
@@ -325,9 +295,6 @@
 
 <body>
 
-    <!-- =========================
-         FUNDO
-    ========================= -->
 
     <div
         class="fundo-animado"
@@ -335,9 +302,6 @@
     </div>
 
 
-    <!-- =========================
-         JOGO
-    ========================= -->
 
     <div
         class="container"
@@ -404,18 +368,12 @@
     </div>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
 
     <script>
 
         let resultadoCorreto;
 
 
-        /* =========================
-           CRIAR ESTRELAS
-        ========================= */
 
         function criarEstrelas() {
 
@@ -444,9 +402,6 @@
         }
 
 
-        /* =========================
-           NOVO PROBLEMA
-        ========================= */
 
         function novoProblema() {
 
@@ -490,9 +445,6 @@
             let n2;
 
 
-            /* =========================
-               SOMA
-            ========================= */
 
             if (operacao === '+') {
 
@@ -511,9 +463,6 @@
             }
 
 
-            /* =========================
-               SUBTRAÇÃO
-            ========================= */
 
             else {
 
@@ -540,9 +489,6 @@
                 `${n1} ${operacao} ${n2}`;
 
 
-            /* =========================
-               GERAR RESPOSTAS
-            ========================= */
 
             let respostas = [
                 resultadoCorreto
@@ -624,9 +570,6 @@
         }
 
 
-        /* =========================
-           VERIFICAR RESPOSTA
-        ========================= */
 
         function verificar(
             valor,

@@ -1,6 +1,4 @@
-// ==========================================
-// LOGIN
-// ==========================================
+
 
 function login() {
 
@@ -28,9 +26,6 @@ function login() {
 }
 
 
-// ==========================================
-// LOGOUT
-// ==========================================
 
 function logout() {
 
@@ -46,9 +41,6 @@ function logout() {
 }
 
 
-// ==========================================
-// NAVEGAÇÃO
-// ==========================================
 
 function mostrarPagina(pagina, botao) {
 
@@ -82,9 +74,6 @@ function mostrarPagina(pagina, botao) {
 }
 
 
-// ==========================================
-// CRIANÇAS
-// ==========================================
 
 function adicionarCrianca() {
 
@@ -156,10 +145,6 @@ function adicionarCrianca() {
 }
 
 
-// ==========================================
-// LIMPAR CAMPOS DA CRIANÇA
-// ==========================================
-
 function limparCamposCrianca() {
 
     document.getElementById("nome").value = "";
@@ -172,10 +157,6 @@ function limparCamposCrianca() {
 
 }
 
-
-// ==========================================
-// EXCLUIR CRIANÇA
-// ==========================================
 
 function excluirLinha(botao) {
 
@@ -191,9 +172,6 @@ function excluirLinha(botao) {
 }
 
 
-// ==========================================
-// ATUALIZAR TOTAL DE CRIANÇAS
-// ==========================================
 
 function atualizarTotal() {
 
@@ -225,9 +203,6 @@ function atualizarTotal() {
 }
 
 
-// ==========================================
-// ATIVIDADES
-// ==========================================
 
 function adicionarAtividade() {
 
@@ -338,9 +313,6 @@ function adicionarAtividade() {
 }
 
 
-// ==========================================
-// EXCLUIR ATIVIDADE
-// ==========================================
 
 function excluirAtividade(botao) {
 
@@ -351,9 +323,6 @@ function excluirAtividade(botao) {
 }
 
 
-// ==========================================
-// TOTAL DE ATIVIDADES
-// ==========================================
 
 function atualizarTotalAtividades() {
 
@@ -387,9 +356,6 @@ function atualizarTotalAtividades() {
 }
 
 
-// ==========================================
-// SESSÕES
-// ==========================================
 
 function adicionarSessao() {
 
@@ -468,10 +434,6 @@ function adicionarSessao() {
 }
 
 
-// ==========================================
-// FORMATAR DATA
-// ==========================================
-
 function formatarData(data) {
 
     let partes =
@@ -489,9 +451,6 @@ function formatarData(data) {
 }
 
 
-// ==========================================
-// EXCLUIR SESSÃO
-// ==========================================
 
 function excluirSessao(botao) {
 
@@ -502,9 +461,6 @@ function excluirSessao(botao) {
 }
 
 
-// ==========================================
-// TOTAL DE SESSÕES
-// ==========================================
 
 function atualizarTotalSessoes() {
 
@@ -536,9 +492,6 @@ function atualizarTotalSessoes() {
 }
 
 
-// ==========================================
-// MODO ESCURO
-// ==========================================
 
 function alternarModoEscuro() {
 
@@ -559,9 +512,6 @@ function alternarModoEscuro() {
 }
 
 
-// ==========================================
-// ALTERAR SENHA
-// ==========================================
 
 function alterarSenha() {
 
@@ -586,9 +536,6 @@ function alterarSenha() {
 }
 
 
-// ==========================================
-// INICIALIZAÇÃO
-// ==========================================
 
 document.addEventListener(
     "DOMContentLoaded",

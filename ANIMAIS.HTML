@@ -30,9 +30,6 @@
         }
 
 
-        /* =========================
-           CONFIGURAÇÕES GERAIS
-        ========================= */
 
         * {
             box-sizing: border-box;
@@ -70,9 +67,6 @@
         }
 
 
-        /* =========================
-           FUNDO INTERATIVO
-        ========================= */
 
         .fundo-interativo {
 
@@ -126,9 +120,6 @@
         }
 
 
-        /* =========================
-           CONTAINER
-        ========================= */
 
         .container {
 
@@ -156,9 +147,6 @@
         }
 
 
-        /* =========================
-           TÍTULO
-        ========================= */
 
         h1 {
 
@@ -172,9 +160,6 @@
         }
 
 
-        /* =========================
-           ANIMAL
-        ========================= */
 
         .display-animal {
 
@@ -212,9 +197,6 @@
         }
 
 
-        /* =========================
-           FEEDBACK
-        ========================= */
 
         .feedback-msg {
 
@@ -228,9 +210,6 @@
         }
 
 
-        /* =========================
-           BOTÕES DE OPÇÕES
-        ========================= */
 
         .grade-botoes {
 
@@ -297,9 +276,6 @@
         }
 
 
-        /* =========================
-           BOTÃO NOVO JOGO
-        ========================= */
 
         .btn-proximo {
 
@@ -339,10 +315,6 @@
         }
 
 
-        /* =========================
-           BOTÃO VOLTAR
-        ========================= */
-
         .voltar {
 
             display: inline-block;
@@ -373,9 +345,6 @@
         }
 
 
-        /* =========================
-           RESPONSIVIDADE
-        ========================= */
 
         @media (max-width: 600px) {
 
@@ -425,9 +394,6 @@
 <body>
 
 
-    <!-- =========================
-         FUNDO
-    ========================= -->
 
     <div
         class="fundo-interativo"
@@ -435,9 +401,6 @@
     </div>
 
 
-    <!-- =========================
-         JOGO
-    ========================= -->
 
     <div class="container">
 
@@ -447,7 +410,6 @@
         </h1>
 
 
-        <!-- ANIMAL -->
 
         <div
             id="animalEmoji"
@@ -459,7 +421,6 @@
         </div>
 
 
-        <!-- FEEDBACK -->
 
         <div
             id="feedback"
@@ -470,7 +431,6 @@
         </div>
 
 
-        <!-- OPÇÕES -->
 
         <div
             class="grade-botoes"
@@ -479,7 +439,6 @@
         </div>
 
 
-        <!-- NOVO JOGO -->
 
         <button
             type="button"
@@ -491,7 +450,6 @@
         </button>
 
 
-        <!-- VOLTAR -->
 
         <a
             href="PÁGINA.HTML"
@@ -504,16 +462,10 @@
     </div>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
 
     <script>
 
 
-        /* =========================
-           LISTA DE ANIMAIS
-        ========================= */
 
         const listaAnimais = [
 
@@ -555,14 +507,10 @@
         ];
 
 
-        /* Animal correto da rodada */
 
         let animalCerto;
 
 
-        /* =========================
-           CRIAR ESTRELAS
-        ========================= */
 
         function criarEstrelas() {
 
@@ -619,9 +567,6 @@
         }
 
 
-        /* =========================
-           INICIAR JOGO
-        ========================= */
 
         function iniciarJogo() {
 
@@ -649,7 +594,6 @@
                 );
 
 
-            /* Resetar informações */
 
             feedback.innerText =
                 "Toque no nome do animal!";
@@ -667,9 +611,6 @@
                 "scale(1)";
 
 
-            /* =========================
-               ESCOLHER ANIMAL
-            ========================= */
 
             const indice =
                 Math.floor(
@@ -686,18 +627,11 @@
                 animalCerto.emoji;
 
 
-            /* =========================
-               CRIAR OPÇÕES
-            ========================= */
 
             const opcoes =
                 [animalCerto.nome];
 
 
-            /*
-             Adiciona animais diferentes
-             até chegar a 4 opções.
-            */
 
             while (
                 opcoes.length < 4
@@ -725,9 +659,6 @@
             }
 
 
-            /* =========================
-               EMBARALHAR
-            ========================= */
 
             opcoes.sort(
                 () =>
@@ -735,15 +666,11 @@
             );
 
 
-            /* Limpar opções antigas */
 
             containerOpcoes.innerHTML =
                 '';
 
 
-            /* =========================
-               CRIAR BOTÕES
-            ========================= */
 
             opcoes.forEach(
                 function (opcao) {
@@ -786,10 +713,6 @@
         }
 
 
-        /* =========================
-           VALIDAR RESPOSTA
-        ========================= */
-
         function validar(
             escolha,
             botaoClicado
@@ -813,9 +736,6 @@
                 );
 
 
-            /* =========================
-               RESPOSTA CORRETA
-            ========================= */
 
             if (
                 escolha ===
@@ -838,7 +758,6 @@
                     "inline-block";
 
 
-                /* Desativar opções */
 
                 const botoes =
                     document.querySelectorAll(
@@ -856,7 +775,6 @@
                 );
 
 
-                /* Destacar resposta correta */
 
                 botaoClicado.style.backgroundColor =
                     "#b9fbc0";
@@ -867,9 +785,6 @@
             }
 
 
-            /* =========================
-               RESPOSTA ERRADA
-            ========================= */
 
             else {
 
@@ -889,10 +804,6 @@
                     "#ff9f9f";
 
 
-                /*
-                 Voltar o botão ao normal
-                 depois de alguns segundos.
-                */
 
                 setTimeout(
                     function () {
@@ -910,9 +821,6 @@
         }
 
 
-        /* =========================
-           INICIAR
-        ========================= */
 
         criarEstrelas();
 
