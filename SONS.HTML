@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vídeos do Cosmo | Space Kids</title>
+
+    <style>
+
+        :root {
+            --fundo: #f3edff;
+            --roxo: #cdb4db;
+            --azul: #a2d2ff;
+            --texto: #665a73;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            padding: 20px;
+
+            min-height: 100vh;
+
+            font-family:
+                'Comic Sans MS',
+                'Chalkboard SE',
+                cursive;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f3edff,
+                    #e4f2ff
+                );
+
+            color: var(--texto);
+
+        }
+
+        header {
+
+            text-align: center;
+
+            max-width: 750px;
+
+            margin: 20px auto 30px;
+
+        }
+
+        header h1 {
+
+            color: #756583;
+
+            font-size: 2.4rem;
+
+        }
+
+        .voltar {
+
+            display: inline-block;
+
+            background: white;
+
+            color: #756583;
+
+            padding: 10px 20px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+        .conteudo {
+
+            max-width: 900px;
+
+            margin: auto;
+
+        }
+
+        .caixa {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .88
+                );
+
+            padding: 25px;
+
+            margin-bottom: 25px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,.07);
+
+            text-align: center;
+
+        }
+
+        /* BOTÕES DOS VÍDEOS */
+
+        .videos {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(180px,1fr)
+                );
+
+            gap: 15px;
+
+        }
+
+        .video-btn {
+
+            border: none;
+
+            padding: 20px 15px;
+
+            border-radius: 20px;
+
+            background: #eee4f7;
+
+            color: #665a73;
+
+            font-family: inherit;
+
+            font-size: 1rem;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+        .video-btn:hover {
+
+            transform: translateY(-5px);
+
+            background: #e3d3f0;
+
+        }
+
+        .video-btn .icone {
+
+            font-size: 2.5rem;
+
+            display: block;
+
+            margin-bottom: 10px;
+
+        }
+
+        /* ÁREA DO VÍDEO */
+
+        .video {
+
+            position: relative;
+
+            width: 100%;
+
+            padding-bottom: 56.25%;
+
+            height: 0;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            margin-top: 20px;
+
+        }
+
+        .video iframe {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+
+        }
+
+        .aviso {
+
+            font-size: .9rem;
+
+            margin-top: 15px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <a
+        href="PÁGINA.HTML"
+        class="voltar"
+    >
+        ← Voltar
+    </a>
+
+    <h1>
+        🎧 Vídeos do Cosmo
+    </h1>
+
+    <p>
+        Escolha um vídeo tranquilo e aproveite
+        um momento de calma.
+    </p>
+
+</header>
+
+
+<main class="conteudo">
+
+
+    <section class="caixa">
+
+        <h2>
+            🌙 Vídeos relaxantes
+        </h2>
+
+        <p>
+            Escolha um dos vídeos abaixo.
+        </p>
+
+
+        <!-- BOTÕES -->
+
+        <div class="videos">
+
+
+            <button
+                class="video-btn"
+                onclick="trocarVideo('chuva')"
+            >
+
+                <span class="icone">
+                    🌧️
+                </span>
+
+                Chuva tranquila
+
+            </button>
+
+
+            <button
+                class="video-btn"
+                onclick="trocarVideo('oceano')"
+            >
+
+                <span class="icone">
+                    🌊
+                </span>
+
+                Ondas do oceano
+
+            </button>
+
+
+            <button
+                class="video-btn"
+                onclick="trocarVideo('floresta')"
+            >
+
+                <span class="icone">
+                    🌳
+                </span>
+
+                Floresta
+
+            </button>
+
+
+            <button
+                class="video-btn"
+                onclick="trocarVideo('espaco')"
+            >
+
+                <span class="icone">
+                    🌌
+                </span>
+
+                Espaço
+
+            </button>
+
+
+        </div>
+
+
+        <!-- VÍDEO -->
+
+        <div class="video">
+
+            <iframe
+                id="videoPlayer"
+                src="https://www.youtube.com/embed/2OEL4P1Rz04"
+                title="Vídeo relaxante"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+
+        <p id="videoAtual" class="aviso">
+            🌧️ Vídeo relaxante selecionado.
+        </p>
+
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+    const videoPlayer =
+        document.getElementById("videoPlayer");
+
+    const videoAtual =
+        document.getElementById("videoAtual");
+
+
+    /*
+    Vídeos disponíveis.
+
+    Para trocar os vídeos, altere apenas
+    os links abaixo.
+    */
+
+    const videos = {
+
+chuva: {
+    nome: "🌧️ Chuva tranquila",
+    link: "https://www.youtube.com/embed/nRh08p-jERg"
+},
+
+oceano: {
+    nome: "🌊 Ondas do oceano",
+    link: "https://www.youtube.com/embed/uom6RoyqFiE"
+},
+
+floresta: {
+    nome: "🌳 Floresta",
+    link: "https://www.youtube.com/embed/OByhSFzgGnA"
+},
+
+espaco: {
+    nome: "🌌 Espaço",
+    link: "https://www.youtube.com/embed/X-XZx1o_w-A"
+}
+
+};
+
+    function trocarVideo(tipo) {
+
+        const video =
+            videos[tipo];
+
+
+        videoPlayer.src =
+            video.link;
+
+
+        videoAtual.textContent =
+            "🎬 Assistindo: " +
+            video.nome;
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

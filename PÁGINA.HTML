@@ -1,520 +1,896 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Space Kids - Jogos Interativos</title>
+<title>Space Kids - Jogos e Terapias</title>
 
-    <style>
-        :root {
-            --bege-claro: #fdf6e3;
-            --azul-pastel: #a2d2ff;
-            --rosa-pastel: #ffafcc;
-            --verde-pastel: #b9fbc0;
-            --roxo-pastel: #cdb4db;
-            --texto-cinza: #5a5a5a;
-        }
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+    :root {
+        --bege-claro: #fdf6e3;
+        --azul-pastel: #a2d2ff;
+        --rosa-pastel: #ffafcc;
+        --verde-pastel: #b9fbc0;
+        --roxo-pastel: #cdb4db;
+        --texto-cinza: #5a5a5a;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        background-color: var(--bege-claro);
+        color: var(--texto-cinza);
+        margin: 0;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+
+
+    .menu-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+
+        font-size: 20px;
+        cursor: pointer;
+
+        padding: 10px 18px;
+
+        background: #558ff1;
+        color: white;
+
+        border: none;
+        border-radius: 15px;
+
+        transition: 0.3s;
+    }
+
+    .menu-btn:hover {
+        transform: scale(1.05);
+    }
+
+
+
+    .sidebar {
+        height: 100%;
+        width: 0;
+
+        position: fixed;
+        z-index: 2000;
+
+        top: 0;
+        left: 0;
+
+        background-color: #d141fd;
+
+        overflow-x: hidden;
+
+        transition: 0.3s;
+
+        padding-top: 60px;
+
+        color: white;
+    }
+
+    .sidebar a {
+        padding: 12px 20px;
+
+        display: block;
+
+        color: white;
+
+        text-decoration: none;
+
+        cursor: pointer;
+
+        transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+        background-color: #ffa2f9;
+    }
+
+    .close-btn {
+        position: absolute;
+
+        top: 10px;
+        right: 20px;
+
+        font-size: 35px;
+
+        cursor: pointer;
+    }
+
+    .tab-content {
+        display: none;
+
+        padding: 10px 20px;
+    }
+
+    .tab-content h3 {
+        margin-bottom: 10px;
+    }
+
+    .tab-content a {
+        background-color: rgba(255, 255, 255, 0.15);
+
+        border-radius: 10px;
+
+        margin-top: 5px;
+    }
+
+
+
+    header {
+        text-align: center;
+
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+
+        color: #7b8fa1;
+
+        margin-bottom: 10px;
+    }
+
+    header p {
+        font-size: 1.1rem;
+    }
+
+
+
+    .grid-jogos {
+        display: grid;
+
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+
+        gap: 25px;
+
+        width: 100%;
+        max-width: 1000px;
+
+        margin: auto;
+    }
+
+
+    .card-jogo {
+        background-color: white;
+
+        border-radius: 25px;
+
+        padding: 20px;
+
+        text-align: center;
+
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+
+        transition: transform 0.3s ease;
+
+        border: 4px solid transparent;
+
+        cursor: pointer;
+
+        text-decoration: none;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        min-height: 300px;
+    }
+
+    .card-jogo:hover {
+        transform: translateY(-10px);
+
+        border-color: var(--azul-pastel);
+    }
+
+    .icone-jogo {
+        font-size: 4rem;
+
+        margin-bottom: 15px;
+    }
+
+    .card-jogo h2 {
+        margin: 10px 0;
+
+        font-size: 1.5rem;
+    }
+
+    .card-jogo p {
+        color: var(--texto-cinza);
+
+        line-height: 1.5;
+    }
+
+
+
+    .bolhas {
+        background-color: var(--azul-pastel);
+
+        color: #2b5d80;
+    }
+
+    .cores {
+        background-color: var(--rosa-pastel);
+
+        color: #803d55;
+    }
+
+    .animais {
+        background-color: var(--verde-pastel);
+
+        color: #3d8042;
+    }
+
+    .conta {
+        background-color: var(--roxo-pastel);
+
+        color: #5a3d80;
+    }
+
+
+
+    .btn-jogar {
+        margin-top: 15px;
+
+        background-color: white;
+
+        padding: 10px 25px;
+
+        border-radius: 50px;
+
+        font-weight: bold;
+
+        text-transform: uppercase;
+
+        font-size: 0.9rem;
+
+        display: inline-block;
+
+        color: var(--texto-cinza);
+
+        transition: 0.2s;
+    }
+
+    .card-jogo:hover .btn-jogar {
+        transform: scale(1.05);
+    }
+
+
+
+    .secao-terapias {
+        width: 100%;
+        max-width: 1000px;
+
+        margin: 75px auto 30px;
+
+        text-align: center;
+    }
+
+
+    .secao-terapias h2 {
+        font-size: 2rem;
+
+        color: #7b8fa1;
+
+        margin-bottom: 10px;
+    }
+
+
+    .secao-terapias > p {
+        font-size: 1.05rem;
+
+        margin-bottom: 30px;
+
+        color: var(--texto-cinza);
+
+        line-height: 1.5;
+    }
+
+
+
+    .grid-terapias {
+        display: grid;
+
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+        gap: 20px;
+    }
+
+
+
+    .card-terapia {
+        background-color: white;
+
+        border-radius: 22px;
+
+        padding: 25px 20px;
+
+        min-height: 280px;
+
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+
+        transition: 0.3s;
+
+        text-decoration: none;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border: 4px solid transparent;
+    }
+
+
+    .card-terapia:hover {
+        transform: translateY(-8px);
+
+        border-color: var(--roxo-pastel);
+    }
+
+
+    .icone-terapia {
+        font-size: 3.5rem;
+
+        margin-bottom: 12px;
+    }
+
+
+    .card-terapia h3 {
+        font-size: 1.35rem;
+
+        margin: 8px 0;
+    }
+
+
+    .card-terapia p {
+        line-height: 1.5;
+
+        margin: 5px 0;
+    }
+
+
+
+    .nebulosa {
+        background-color: #e4edff;
+
+        color: #4d6b91;
+    }
+
+
+    .pintura {
+        background-color: #ffe1ec;
+
+        color: #8b4f68;
+    }
+
+
+    .respiro {
+        background-color: #e4f9e7;
+
+        color: #4c8055;
+    }
+
+
+    .sons {
+        background-color: #eee3fa;
+
+        color: #665080;
+    }
+
+
+
+    .btn-terapia {
+        margin-top: 15px;
+
+        background-color: white;
+
+        padding: 9px 20px;
+
+        border-radius: 50px;
+
+        font-weight: bold;
+
+        text-transform: uppercase;
+
+        font-size: 0.85rem;
+
+        color: var(--texto-cinza);
+
+        transition: 0.2s;
+    }
+
+
+    .card-terapia:hover .btn-terapia {
+        transform: scale(1.05);
+    }
+
+
+
+    .separador {
+        width: 80%;
+
+        max-width: 700px;
+
+        height: 2px;
+
+        margin: 60px auto 0;
+
+        background-color: #d8cde3;
+
+        border-radius: 10px;
+    }
+
+
+
+    footer {
+        text-align: center;
+
+        margin-top: 50px;
+
+        padding: 20px;
+
+        color: #7b8fa1;
+
+        font-size: 0.9rem;
+    }
+
+
+
+    @media (max-width: 600px) {
 
         body {
-            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
-            background-color: var(--bege-claro);
-            color: var(--texto-cinza);
-            margin: 0;
-            min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
-
 
         .menu-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-
-            font-size: 20px;
-            cursor: pointer;
-
-            padding: 10px 18px;
-
-            background: #558ff1;
-            color: white;
-
-            border: none;
-            border-radius: 15px;
-
-            transition: 0.3s;
-        }
-
-        .menu-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 0;
-
-            position: fixed;
-            z-index: 2000;
-
-            top: 0;
-            left: 0;
-
-            background-color: #d141fd;
-
-            overflow-x: hidden;
-
-            transition: 0.3s;
-
-            padding-top: 60px;
-
-            color: white;
-        }
-
-        .sidebar a {
-            padding: 12px 20px;
-
-            display: block;
-
-            color: white;
-
-            text-decoration: none;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-        }
-
-        .sidebar a:hover {
-            background-color: #ffa2f9;
-        }
-
-        .close-btn {
-            position: absolute;
-
             top: 10px;
-            right: 20px;
-
-            font-size: 35px;
-
-            cursor: pointer;
-        }
-
-        .tab-content {
-            display: none;
-
-            padding: 10px 20px;
-        }
-
-        .tab-content h3 {
-            margin-bottom: 10px;
-        }
-
-        .tab-content a {
-            background-color: rgba(255, 255, 255, 0.15);
-
-            border-radius: 10px;
-
-            margin-top: 5px;
-        }
-
-
-        header {
-            text-align: center;
-
-            margin-top: 50px;
-            margin-bottom: 40px;
+            left: 10px;
         }
 
         h1 {
-            font-size: 2.5rem;
-
-            color: #7b8fa1;
-
-            margin-bottom: 10px;
+            font-size: 1.8rem;
         }
-
-        header p {
-            font-size: 1.1rem;
-        }
-
 
         .grid-jogos {
-            display: grid;
-
-            grid-template-columns: repeat(
-                auto-fit,
-                minmax(250px, 1fr)
-            );
-
-            gap: 25px;
-
-            width: 100%;
-            max-width: 1000px;
-
-            margin: auto;
+            grid-template-columns: 1fr;
         }
 
+        .grid-terapias {
+            grid-template-columns: 1fr;
+        }
 
         .card-jogo {
-            background-color: white;
-
-            border-radius: 25px;
-
-            padding: 20px;
-
-            text-align: center;
-
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
-
-            transition: transform 0.3s ease;
-
-            border: 4px solid transparent;
-
-            cursor: pointer;
-
-            text-decoration: none;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
-            min-height: 300px;
+            min-height: 270px;
         }
 
-        .card-jogo:hover {
-            transform: translateY(-10px);
-
-            border-color: var(--azul-pastel);
+        .card-terapia {
+            min-height: 250px;
         }
 
-        .icone-jogo {
-            font-size: 4rem;
-
-            margin-bottom: 15px;
+        .secao-terapias {
+            margin-top: 55px;
         }
 
-        .card-jogo h2 {
-            margin: 10px 0;
+    }
 
-            font-size: 1.5rem;
-        }
+</style>
+```
 
-        .card-jogo p {
-            color: var(--texto-cinza);
-
-            line-height: 1.5;
-        }
-
-
-        .bolhas {
-            background-color: var(--azul-pastel);
-
-            color: #2b5d80;
-        }
-
-        .cores {
-            background-color: var(--rosa-pastel);
-
-            color: #803d55;
-        }
-
-        .animais {
-            background-color: var(--verde-pastel);
-
-            color: #3d8042;
-        }
-
-        .conta {
-            background-color: var(--roxo-pastel);
-
-            color: #5a3d80;
-        }
-
-
-        .btn-jogar {
-            margin-top: 15px;
-
-            background-color: white;
-
-            padding: 10px 25px;
-
-            border-radius: 50px;
-
-            font-weight: bold;
-
-            text-transform: uppercase;
-
-            font-size: 0.9rem;
-
-            display: inline-block;
-
-            color: var(--texto-cinza);
-
-            transition: 0.2s;
-        }
-
-        .card-jogo:hover .btn-jogar {
-            transform: scale(1.05);
-        }
-
-
-        @media (max-width: 600px) {
-
-            body {
-                padding: 15px;
-            }
-
-            .menu-btn {
-                top: 10px;
-                left: 10px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .grid-jogos {
-                grid-template-columns: 1fr;
-            }
-
-            .card-jogo {
-                min-height: 270px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
 
-    <button class="menu-btn" onclick="openSidebar()">
-        ☰ Menu
-    </button>
+
+<button
+    class="menu-btn"
+    onclick="openSidebar()"
+>
+    ☰ Menu
+</button>
 
 
 
-    <div id="sidebar" class="sidebar">
+<div
+    id="sidebar"
+    class="sidebar"
+>
 
-        <span class="close-btn" onclick="closeSidebar()">
-            ×
-        </span>
+    <span
+        class="close-btn"
+        onclick="closeSidebar()"
+    >
+        ×
+    </span>
 
 
-        <!-- CONTATO -->
+    <!-- CONTATO -->
 
-        <a onclick="showTab('contato')">
-            📩 Contato dos Desenvolvedores
+    <a onclick="showTab('contato')">
+        📩 Contato dos Desenvolvedores
+    </a>
+
+
+    <div
+        id="contato"
+        class="tab-content"
+    >
+
+        <h3>
+            Contato
+        </h3>
+
+        <a href="CONTATO.HTML">
+            Página dos desenvolvedores
         </a>
-
-        <div id="contato" class="tab-content">
-
-            <h3>
-                Contato
-            </h3>
-
-            <a href="CONTATO.HTML">
-                Página dos desenvolvedores
-            </a>
-
-        </div>
-
-
-        <!-- MOTIVO -->
-
-        <a onclick="showTab('motivo')">
-            🌟 Motivo da Space Kids
-        </a>
-
-        <div id="motivo" class="tab-content">
-
-            <h3>
-                História Por Trás
-            </h3>
-
-            <a href="SOBRE.HTML">
-                Motivações
-            </a>
-
-        </div>
 
     </div>
 
 
+    <!-- MOTIVO -->
 
-    <header>
+    <a onclick="showTab('motivo')">
+        🌟 Motivo da Space Kids
+    </a>
 
-        <h1>
-            🌟 Space Kids 🌟
-        </h1>
+
+    <div
+        id="motivo"
+        class="tab-content"
+    >
+
+        <h3>
+            História Por Trás
+        </h3>
+
+        <a href="SOBRE.HTML">
+            Motivações
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<header>
+
+    <h1>
+        🌟 Jogos Atrativos 🌟
+    </h1>
+
+    <p>
+        Escolha uma aventura divertida hoje!
+    </p>
+
+</header>
+
+
+
+<main class="grid-jogos">
+
+
+    <!-- BOLHAS DE HUMOR -->
+
+    <a
+        href="BOLHAS.HTML"
+        class="card-jogo bolhas"
+    >
+
+        <div class="icone-jogo">
+            🫧
+        </div>
+
+        <h2>
+            Bolhas de Humor
+        </h2>
 
         <p>
-            Escolha uma aventura divertida hoje!
+            Como você está se sentindo agora?
         </p>
 
-    </header>
+        <span class="btn-jogar">
+            Explorar
+        </span>
+
+    </a>
+
+
+    <!-- QUAL A COR -->
+
+    <a
+        href="CORES.HTML"
+        class="card-jogo cores"
+    >
+
+        <div class="icone-jogo">
+            🎨
+        </div>
+
+        <h2>
+            Qual a Cor?
+        </h2>
+
+        <p>
+            Vamos descobrir as cores do arco-íris!
+        </p>
+
+        <span class="btn-jogar">
+            Colorir
+        </span>
+
+    </a>
+
+
+    <!-- QUAL O ANIMAL -->
+
+    <a
+        href="ANIMAIS.HTML"
+        class="card-jogo animais"
+    >
+
+        <div class="icone-jogo">
+            🐶
+        </div>
+
+        <h2>
+            Qual o Animal?
+        </h2>
+
+        <p>
+            Ouça os sons e adivinhe o bicho.
+        </p>
+
+        <span class="btn-jogar">
+            Ouvir
+        </span>
+
+    </a>
+
+
+    <!-- FAZENDO CONTAS -->
+
+    <a
+        href="CONTA.HTML"
+        class="card-jogo conta"
+    >
+
+        <div class="icone-jogo">
+            🔢
+        </div>
+
+        <h2>
+            Fazendo Contas
+        </h2>
+
+        <p>
+            Vamos explorar os números!
+        </p>
+
+        <span class="btn-jogar">
+            Aprender
+        </span>
+
+    </a>
+
+</main>
 
 
 
-    <main class="grid-jogos">
+<section class="secao-terapias">
 
 
+    <div class="separador"></div>
+
+
+    <h2>
+        🌙 Lições & Terapias 🌙
+    </h2>
+
+
+    <p>
+        Momentos tranquilos para aprender,
+        respirar, explorar e descobrir
+        novas sensações.
+    </p>
+
+
+    <div class="grid-terapias">
+
+
+        <!-- NEBULOSA DO SILÊNCIO -->
 
         <a
-            href="BOLHAS.HTML"
-            class="card-jogo bolhas"
+            href="NEBULOSA.HTML"
+            class="card-terapia nebulosa"
         >
 
-            <div class="icone-jogo">
-                🫧
+            <div class="icone-terapia">
+                🌌
             </div>
 
-            <h2>
-                Bolhas de Humor
-            </h2>
+            <h3>
+                Nebulosa do Silêncio
+            </h3>
 
             <p>
-                Como você está se sentindo agora?
+                Um espaço calmo para desenvolver
+                foco e concentração.
             </p>
 
-            <span class="btn-jogar">
+            <span class="btn-terapia">
+                Começar
+            </span>
+
+        </a>
+
+
+        <!-- PINTURA ESTELAR -->
+
+        <a
+            href="PINTURA.HTML"
+            class="card-terapia pintura"
+        >
+
+            <div class="icone-terapia">
+                🖼️
+            </div>
+
+            <h3>
+                Pintura Estelar
+            </h3>
+
+            <p>
+                Explore cores, formas e estímulos
+                em uma atividade sensorial.
+            </p>
+
+            <span class="btn-terapia">
                 Explorar
             </span>
 
         </a>
 
 
+        <!-- RESPIRO LUNAR -->
 
         <a
-            href="CORES.HTML"
-            class="card-jogo cores"
+            href="RESPIRO.HTML"
+            class="card-terapia respiro"
         >
 
-            <div class="icone-jogo">
-                🎨
+            <div class="icone-terapia respiro-icone">
+                🌙
             </div>
 
-            <h2>
-                Qual a Cor?
-            </h2>
+            <h3>
+                Respiro Lunar
+            </h3>
 
             <p>
-                Vamos descobrir as cores do arco-íris!
+                Respire com calma e acompanhe
+                uma atividade de relaxamento.
             </p>
 
-            <span class="btn-jogar">
-                Colorir
+            <span class="btn-terapia">
+                Respirar
             </span>
 
         </a>
 
 
+        <!-- SONS DO COSMO -->
 
         <a
-            href="ANIMAIS.HTML"
-            class="card-jogo animais"
+            href="SONS.HTML"
+            class="card-terapia sons"
         >
 
-            <div class="icone-jogo">
-                🐶
+            <div class="icone-terapia">
+                🎧
             </div>
 
-            <h2>
-                Qual o Animal?
-            </h2>
+            <h3>
+                Sons do Cosmo
+            </h3>
 
             <p>
-                Ouça os sons e adivinhe o bicho.
+                Explore sons e imagens em uma
+                atividade de estímulo auditivo.
             </p>
 
-            <span class="btn-jogar">
+            <span class="btn-terapia">
                 Ouvir
             </span>
 
         </a>
 
 
+    </div>
 
-        <a
-            href="CONTA.HTML"
-            class="card-jogo conta"
-        >
-
-            <div class="icone-jogo">
-                🔢
-            </div>
-
-            <h2>
-                Fazendo Contas
-            </h2>
-
-            <p>
-                Vamos explorar os números!
-            </p>
-
-            <span class="btn-jogar">
-                Aprender
-            </span>
-
-        </a>
-
-    </main>
+</section>
 
 
 
-    <script>
+<footer>
 
-        /* Abrir menu */
+    🚀 Space Kids — Onde cada estrela
+    brilha do seu próprio jeito! ✨
 
-        function openSidebar() {
-
-            document.getElementById("sidebar").style.width = "280px";
-
-        }
+</footer>
 
 
-        /* Fechar menu */
 
-        function closeSidebar() {
-
-            document.getElementById("sidebar").style.width = "0";
-
-        }
+<script>
 
 
-        /* Mostrar conteúdo do menu */
 
-        function showTab(tabId) {
+    function openSidebar() {
 
-            let tabs =
-                document.getElementsByClassName("tab-content");
+        document.getElementById("sidebar").style.width = "280px";
 
-
-            for (
-                let i = 0;
-                i < tabs.length;
-                i++
-            ) {
-
-                tabs[i].style.display = "none";
-
-            }
+    }
 
 
-            document.getElementById(tabId).style.display = "block";
+
+    function closeSidebar() {
+
+        document.getElementById("sidebar").style.width = "0";
+
+    }
+
+
+
+    function showTab(tabId) {
+
+        let tabs =
+            document.getElementsByClassName("tab-content");
+
+
+        for (
+            let i = 0;
+            i < tabs.length;
+            i++
+        ) {
+
+            tabs[i].style.display = "none";
 
         }
 
-    </script>
+
+        document.getElementById(tabId).style.display = "block";
+
+    }
+
+</script>
 
 </body>
 

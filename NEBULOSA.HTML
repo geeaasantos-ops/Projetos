@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nebulosa do Silêncio | Space Kids</title>
+
+<style>
+
+    :root {
+        --fundo: #eef3ff;
+        --azul: #a2d2ff;
+        --roxo: #cdb4db;
+        --texto: #5a6472;
+        --branco: #ffffff;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 20px;
+
+        font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+
+        background: linear-gradient(
+            135deg,
+            #eef3ff,
+            #e8ddf5
+        );
+
+        color: var(--texto);
+    }
+
+    header {
+        text-align: center;
+        margin: 20px auto 30px;
+        max-width: 800px;
+    }
+
+    header h1 {
+        color: #647b99;
+        font-size: 2.4rem;
+    }
+
+    header p {
+        font-size: 1.1rem;
+    }
+
+    .voltar {
+        display: inline-block;
+
+        background: white;
+        color: #647b99;
+
+        padding: 10px 20px;
+
+        border-radius: 30px;
+
+        text-decoration: none;
+        font-weight: bold;
+
+        box-shadow: 0 5px 10px rgba(0,0,0,.08);
+    }
+
+    .area-jogo {
+        max-width: 750px;
+        margin: auto;
+
+        background: rgba(255,255,255,.8);
+
+        padding: 30px;
+
+        border-radius: 30px;
+
+        text-align: center;
+
+        box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .quebra-cabeca {
+        display: grid;
+
+        grid-template-columns: repeat(3, 110px);
+
+        justify-content: center;
+
+        gap: 6px;
+
+        margin: 25px auto;
+    }
+
+    .peca {
+        width: 110px;
+        height: 110px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        cursor: pointer;
+
+        font-size: 2rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: .2s;
+
+        background: #dce9ff;
+    }
+
+    .peca:hover {
+        transform: scale(1.05);
+    }
+
+    .vazia {
+        background: transparent;
+        cursor: default;
+    }
+
+    .controles button {
+        border: none;
+
+        padding: 12px 22px;
+
+        border-radius: 30px;
+
+        background: var(--roxo);
+
+        color: white;
+
+        font-family: inherit;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        margin: 5px;
+    }
+
+    .controles button:hover {
+        transform: scale(1.05);
+    }
+
+    #mensagem {
+        min-height: 30px;
+
+        font-weight: bold;
+
+        margin: 15px;
+    }
+
+    @media(max-width:600px) {
+
+        .quebra-cabeca {
+            grid-template-columns: repeat(3, 85px);
+        }
+
+        .peca {
+            width: 85px;
+            height: 85px;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <a class="voltar" href="PÁGINA.HTML">
+        ← Voltar
+    </a>
+
+    <h1>🌌 Nebulosa do Silêncio</h1>
+
+    <p>
+        Encontre a ordem das estrelas e complete
+        o pequeno quebra-cabeça.
+    </p>
+
+</header>
+
+
+<main class="area-jogo">
+
+    <h2 id="tituloPuzzle">
+        ⭐ Organize as estrelas
+    </h2>
+
+    <p>
+        Clique em uma peça ao lado do espaço vazio
+        para movimentá-la.
+    </p>
+
+
+    <div
+        id="quebraCabeca"
+        class="quebra-cabeca"
+    ></div>
+
+
+    <div id="mensagem"></div>
+
+
+    <div class="controles">
+
+        <button onclick="novoPuzzle()">
+            🌟 Novo desafio
+        </button>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    const quebraCabeca =
+        document.getElementById("quebraCabeca");
+
+    const mensagem =
+        document.getElementById("mensagem");
+
+
+    let tabuleiro = [];
+
+    let puzzleAtual = 0;
+
+
+    const puzzles = [
+
+        ["🌙","⭐","🌟","✨","🌌","💫","☁️","🪐",""],
+
+        ["🚀","🌙","⭐","🪐","✨","🌟","💫","☁️",""],
+
+        ["🌟","💫","🌙","⭐","🪐","✨","☁️","🚀",""],
+
+        ["🪐","⭐","🚀","🌌","🌙","💫","✨","☁️",""]
+
+    ];
+
+
+    function novoPuzzle() {
+
+        puzzleAtual++;
+
+        if (puzzleAtual >= puzzles.length) {
+            puzzleAtual = 0;
+        }
+
+        tabuleiro =
+            [...puzzles[puzzleAtual]];
+
+        mensagem.textContent = "";
+
+        renderizar();
+
+    }
+
+
+    function renderizar() {
+
+        quebraCabeca.innerHTML = "";
+
+
+        tabuleiro.forEach(
+            (item, indice) => {
+
+                const peca =
+                    document.createElement("button");
+
+                peca.className = "peca";
+
+
+                if (item === "") {
+
+                    peca.classList.add("vazia");
+
+                } else {
+
+                    peca.textContent = item;
+
+                    peca.onclick =
+                        () => mover(indice);
+
+                }
+
+
+                quebraCabeca.appendChild(peca);
+
+            }
+        );
+
+    }
+
+
+    function mover(indice) {
+
+        const vazio =
+            tabuleiro.indexOf("");
+
+        const movimentosPossiveis = [
+
+            vazio - 1,
+            vazio + 1,
+            vazio - 3,
+            vazio + 3
+
+        ];
+
+
+        if (
+            movimentosPossiveis.includes(indice)
+        ) {
+
+
+            const mesmaLinha =
+                Math.floor(indice / 3) ===
+                Math.floor(vazio / 3);
+
+
+            const movimentoVertical =
+                Math.abs(indice - vazio) === 3;
+
+
+            if (mesmaLinha || movimentoVertical) {
+
+                [
+                    tabuleiro[indice],
+                    tabuleiro[vazio]
+                ] =
+                [
+                    tabuleiro[vazio],
+                    tabuleiro[indice]
+                ];
+
+
+                renderizar();
+
+                verificar();
+
+            }
+
+        }
+
+    }
+
+
+    function verificar() {
+
+
+
+        const objetivo =
+            puzzles[puzzleAtual];
+
+        if (
+            JSON.stringify(tabuleiro) ===
+            JSON.stringify(objetivo)
+        ) {
+
+            mensagem.textContent =
+                "🌟 Muito bem! Você completou a nebulosa!";
+
+        }
+
+    }
+
+
+
+
+    function embaralhar() {
+
+        for (let i = 0; i < 25; i++) {
+
+            const vazio =
+                tabuleiro.indexOf("");
+
+            const possibilidades =
+                [];
+
+            [
+                vazio - 1,
+                vazio + 1,
+                vazio - 3,
+                vazio + 3
+            ].forEach(indice => {
+
+                if (
+                    indice >= 0 &&
+                    indice < 9
+                ) {
+
+                    const mesmaLinha =
+                        Math.floor(indice / 3) ===
+                        Math.floor(vazio / 3);
+
+                    const vertical =
+                        Math.abs(indice - vazio) === 3;
+
+                    if (
+                        mesmaLinha ||
+                        vertical
+                    ) {
+                        possibilidades.push(indice);
+                    }
+
+                }
+
+            });
+
+
+            const escolhido =
+                possibilidades[
+                    Math.floor(
+                        Math.random() *
+                        possibilidades.length
+                    )
+                ];
+
+
+            [
+                tabuleiro[escolhido],
+                tabuleiro[vazio]
+            ] =
+            [
+                tabuleiro[vazio],
+                tabuleiro[escolhido]
+            ];
+
+        }
+
+    }
+
+
+    tabuleiro = [...puzzles[0]];
+
+    embaralhar();
+
+    renderizar();
+
+</script>
+
+</body>
+
+</html>
