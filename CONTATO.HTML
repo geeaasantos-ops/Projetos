@@ -8,178 +8,704 @@
     <title>Contato | Space Kids</title>
 
     <style>
-        :root {
-            --espacial-escuro: #1a1a2e;
-            --azul-claro: #4d94ff;
-            --texto-claro: #f4f4f9;
-            --cor-acento: #ffcc00;
-            --azul-hover: #347ee8;
-        }
+:root {
+    --fundo: #f8f4ff;
+    --branco: #ffffff;
 
-        * {
-            box-sizing: border-box;
-        }
+    --roxo: #9b7ede;
+    --roxo-claro: #d9c8ff;
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--espacial-escuro);
-            color: var(--texto-claro);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
+    --rosa: #ffb8d2;
+    --rosa-claro: #ffe6f0;
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid var(--azul-claro);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-        }
+    --azul: #9ddcff;
+    --azul-claro: #e1f5ff;
 
-        h1,
-        h2 {
-            color: var(--cor-acento);
-            text-align: center;
-        }
+    --amarelo: #ffe28a;
+    --verde: #b9ebd0;
 
-        h1 {
-            margin-bottom: 10px;
-        }
+    --texto: #554c68;
+    --texto-suave: #766d87;
 
-        h2 {
-            margin-top: 10px;
-        }
+    --sombra: 0 10px 25px rgba(115, 91, 160, 0.15);
+}
 
-        header p {
-            text-align: center;
-            margin-bottom: 30px;
-        }
 
-        .info-empresa {
-            margin-bottom: 30px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 20px;
-        }
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
 
-        .info-empresa p {
-            margin: 10px 0;
-        }
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-        .form-contato {
-            display: grid;
-            gap: 15px;
-        }
+body {
+    margin: 0;
+    padding: 30px 20px;
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-        input,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            font-family: inherit;
-            outline: none;
-        }
+    color: var(--texto);
 
-        input:focus,
-        textarea:focus {
-            border-color: var(--azul-claro);
-            box-shadow: 0 0 0 3px rgba(77, 148, 255, 0.2);
-        }
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(255, 184, 210, 0.45) 0 45px,
+            transparent 46px
+        ),
 
-        textarea {
-            min-height: 130px;
-            resize: vertical;
-        }
+        radial-gradient(
+            circle at 90% 12%,
+            rgba(157, 220, 255, 0.45) 0 55px,
+            transparent 56px
+        ),
 
-        button {
-            background-color: var(--cor-acento);
-            color: #000;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: transform 0.2s, background-color 0.2s;
-        }
+        radial-gradient(
+            circle at 80% 85%,
+            rgba(217, 200, 255, 0.4) 0 70px,
+            transparent 71px
+        ),
 
-        button:hover {
-            transform: scale(1.02);
-            background-color: #ffd633;
-        }
+        linear-gradient(
+            180deg,
+            #f8f4ff,
+            #eef9ff
+        );
 
-        .btn-voltar {
-            display: block;
-            width: 100%;
-            margin-top: 20px;
-            padding: 14px;
-            background-color: var(--azul-claro);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: transform 0.2s, background-color 0.2s;
-        }
+    min-height: 100vh;
+}
 
-        .btn-voltar:hover {
-            background-color: var(--azul-hover);
-            transform: scale(1.02);
-        }
 
-        .acessibilidade-nota {
-            font-size: 0.9em;
-            color: #bbb;
-            font-style: italic;
-            margin-top: 20px;
-            text-align: center;
-        }
+/* Pequenas estrelas decorativas */
 
-        .mensagem-sucesso {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            background-color: #b9fbc0;
-            color: #24552a;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-        }
+body::before {
+    content: "✦     ✧       ★       ✦       ✧";
 
-        /* RESPONSIVIDADE */
+    position: fixed;
 
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
+    top: 12px;
+    left: 0;
 
-            .container {
-                padding: 20px;
-            }
+    width: 100%;
 
-            h1 {
-                font-size: 1.8rem;
-            }
+    text-align: center;
 
-            h2 {
-                font-size: 1.4rem;
-            }
+    color: rgba(155, 126, 222, 0.3);
 
-            input,
-            textarea {
-                font-size: 16px;
-            }
-        }
+    font-size: 22px;
+    letter-spacing: 15px;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
+
+.container {
+    position: relative;
+
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 35px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    border-radius: 35px;
+
+    border: 4px solid var(--roxo-claro);
+
+    box-shadow:
+        0 15px 40px rgba(115, 91, 160, 0.18);
+
+    overflow: hidden;
+}
+
+
+/* Estrelinhas dentro do container */
+
+.container::before {
+    content: "⭐";
+
+    position: absolute;
+
+    top: 18px;
+    right: 25px;
+
+    font-size: 32px;
+
+    animation: piscar 2s ease-in-out infinite;
+}
+
+.container::after {
+    content: "🌙";
+
+    position: absolute;
+
+    bottom: 20px;
+    left: 25px;
+
+    font-size: 30px;
+
+    opacity: 0.7;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header {
+    position: relative;
+
+    text-align: center;
+
+    padding: 35px 20px;
+
+    margin-bottom: 30px;
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(255,255,255,0.5) 0 7px,
+            transparent 8px
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255,255,255,0.5) 0 5px,
+            transparent 6px
+        ),
+
+        linear-gradient(
+            135deg,
+            #a88ce8,
+            #9ddcff
+        );
+
+    box-shadow:
+        0 8px 20px rgba(115, 91, 160, 0.18);
+
+    overflow: hidden;
+}
+
+
+/* Foguete decorativo */
+
+header::before {
+    content: "🚀";
+
+    position: absolute;
+
+    left: 30px;
+    top: 25px;
+
+    font-size: 42px;
+
+    animation: flutuar 3s ease-in-out infinite;
+}
+
+
+/* Estrela */
+
+header::after {
+    content: "⭐";
+
+    position: absolute;
+
+    right: 35px;
+    bottom: 25px;
+
+    font-size: 32px;
+
+    animation: piscar 2s ease-in-out infinite;
+}
+
+
+header h1 {
+    position: relative;
+
+    margin: 0 0 10px;
+
+    color: white;
+
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+
+    font-weight: 800;
+
+    text-shadow:
+        3px 3px 0 rgba(92, 70, 150, 0.2);
+}
+
+
+header p {
+    position: relative;
+
+    display: inline-block;
+
+    margin: 0;
+
+    padding: 8px 18px;
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    color: white;
+
+    font-size: 1.05rem;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   SEÇÕES
+========================= */
+
+section {
+    margin-bottom: 30px;
+
+    padding: 28px;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #faf7ff
+    );
+
+    border-radius: 28px;
+
+    border: 3px solid var(--azul-claro);
+
+    box-shadow:
+        0 7px 18px rgba(115, 91, 160, 0.1);
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    color: var(--roxo);
+
+    font-size: 1.7rem;
+
+    font-weight: 800;
+}
+
+h2::before {
+    content: "🌟 ";
+}
+
+h2::after {
+    content: " 🌟";
+}
+
+
+/* =========================
+   INFORMAÇÕES DA EMPRESA
+========================= */
+
+.info-empresa {
+    border-color: var(--rosa);
+    background:
+        linear-gradient(
+            135deg,
+            #fff9fc,
+            #f7fbff
+        );
+}
+
+.info-empresa p {
+    margin: 14px 0;
+
+    padding: 12px 15px;
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.8);
+
+    color: var(--texto);
+
+    border-left: 5px solid var(--roxo-claro);
+}
+
+.info-empresa p:nth-of-type(1) {
+    border-left-color: var(--rosa);
+}
+
+.info-empresa p:nth-of-type(2) {
+    border-left-color: var(--azul);
+}
+
+.info-empresa p:nth-of-type(3) {
+    border-left-color: var(--amarelo);
+}
+
+.info-empresa strong {
+    color: var(--roxo);
+}
+
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
+.form-contato {
+    display: grid;
+
+    gap: 18px;
+}
+
+
+/* Labels */
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--texto);
+
+    font-weight: 700;
+}
+
+
+/* Campos */
+
+input,
+textarea {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border-radius: 17px;
+
+    border: 3px solid #e8e0f5;
+
+    background: #ffffff;
+
+    color: var(--texto);
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.2s ease;
+}
+
+
+/* Placeholder */
+
+input::placeholder,
+textarea::placeholder {
+    color: #aaa1b5;
+}
+
+
+/* Quando clicar */
+
+input:focus,
+textarea:focus {
+    border-color: var(--roxo);
+
+    box-shadow:
+        0 0 0 4px rgba(155, 126, 222, 0.15);
+
+    transform: translateY(-2px);
+}
+
+
+/* Mensagem */
+
+textarea {
+    min-height: 140px;
+
+    resize: vertical;
+}
+
+
+/* =========================
+   BOTÃO ENVIAR
+========================= */
+
+button {
+    position: relative;
+
+    padding: 15px 20px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb8d2,
+            #d9c8ff
+        );
+
+    color: #5d4b76;
+
+    font-size: 1.1rem;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 15px rgba(155, 126, 222, 0.2);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-4px) scale(1.02);
+
+    box-shadow:
+        0 10px 20px rgba(155, 126, 222, 0.28);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   MENSAGEM DE SUCESSO
+========================= */
+
+.mensagem-sucesso {
+    display: none;
+
+    margin-top: 18px;
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    background: var(--verde);
+
+    color: #356747;
+
+    border: 3px solid #9bd7b6;
+
+    text-align: center;
+
+    font-weight: 700;
+
+    animation: aparecer 0.4s ease;
+}
+
+
+/* =========================
+   NOTA DE ACESSIBILIDADE
+========================= */
+
+.acessibilidade-nota {
+    margin: 25px 10px;
+
+    padding: 15px;
+
+    border-radius: 20px;
+
+    background: var(--rosa-claro);
+
+    color: #806176;
+
+    text-align: center;
+
+    font-size: 0.95rem;
+
+    font-style: normal;
+
+    border: 2px dashed var(--rosa);
+}
+
+
+/* =========================
+   BOTÃO VOLTAR
+========================= */
+
+.btn-voltar {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9ddcff,
+            #bdaaff
+        );
+
+    color: white;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border-radius: 18px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 6px 15px rgba(100, 160, 210, 0.2);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.btn-voltar:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(100, 160, 210, 0.3);
+}
+
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes flutuar {
+
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(5deg);
+    }
+}
+
+
+@keyframes piscar {
+
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.15);
+    }
+}
+
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 4px solid var(--amarelo);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        padding: 18px;
+
+        border-radius: 25px;
+    }
+
+    header {
+        padding: 35px 15px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    header::before {
+        left: 12px;
+        font-size: 30px;
+    }
+
+    header::after {
+        right: 15px;
+        font-size: 25px;
+    }
+
+    section {
+        padding: 20px 15px;
+
+        border-radius: 22px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    input,
+    textarea {
+        font-size: 16px;
+    }
+
+    .acessibilidade-nota {
+        font-size: 0.85rem;
+    }
+}
     </style>
 </head>
 

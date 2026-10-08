@@ -12,308 +12,487 @@
     <title>Bolhas de Humor | Space Kids</title>
 
     <style>
+    :root {
+        --bg-pastel: #f5f0ff;
+        --texto: #756784;
 
+        --feliz: #fff4a8;
+        --calmo: #bde8f5;
+        --triste: #dcd6ff;
+        --animado: #ffccef;
 
+        --rosa: #ffb7d5;
+        --azul: #a2d2ff;
+        --verde: #c4f5cb;
+        --roxo: #cdb4db;
 
-        :root {
-            --bg-pastel: #f0f4f8;
-            --texto: #5d6d7e;
+        --branco: #ffffff;
+        --sombra: 0 12px 30px rgba(143, 120, 180, 0.15);
+    }
 
+    * {
+        box-sizing: border-box;
+    }
 
-            --feliz: #fff9ae;
-            --calmo: #b2e2f2;
-            --triste: #d1d1f0;
-            --animado: #ffccf9;
+    html {
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family:
+            "Comic Sans MS",
+            "Chalkboard SE",
+            "Segoe UI",
+            sans-serif;
+
+        color: var(--texto);
+
+        background:
+            radial-gradient(
+                circle at 12% 15%,
+                rgba(255, 255, 255, 0.95) 0 4px,
+                transparent 5px
+            ),
+            radial-gradient(
+                circle at 85% 25%,
+                rgba(255, 241, 168, 0.8) 0 5px,
+                transparent 6px
+            ),
+            radial-gradient(
+                circle at 20% 80%,
+                rgba(255, 255, 255, 0.8) 0 3px,
+                transparent 4px
+            ),
+            linear-gradient(
+                145deg,
+                #f5f0ff 0%,
+                #fff0f7 50%,
+                #e5f4ff 100%
+            );
+
+        background-attachment: fixed;
+
+        margin: 0;
+        padding: 30px 18px 40px;
+
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    /* Cartão principal */
+    .container {
+        position: relative;
+        z-index: 1;
+
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        min-height: auto;
+
+        margin: 15px auto 25px;
+        padding: 35px 30px;
+
+        text-align: center;
+
+        background: rgba(255, 255, 255, 0.82);
+
+        border: 3px solid rgba(255, 255, 255, 0.98);
+        border-radius: 35px;
+
+        box-shadow:
+            var(--sombra),
+            0 5px 0 rgba(205, 180, 219, 0.2);
+
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        overflow: visible;
+
+        animation: aparecer 0.6s ease-out;
+    }
+
+    /* Título */
+    h1 {
+        color: #927db7;
+
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 800;
+        line-height: 1.4;
+
+        margin: 0 0 30px;
+
+        text-shadow: 2px 3px 0 #f0e3ff;
+    }
+
+    /* Bolha principal de humor */
+    .bolha-principal {
+        position: relative;
+
+        width: 190px;
+        height: 190px;
+
+        max-width: 65vw;
+        max-height: 65vw;
+
+        border-radius: 50%;
+
+        background: linear-gradient(
+            145deg,
+            #fff9ae,
+            #ffef9b
+        );
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: clamp(3.5rem, 12vw, 5rem);
+
+        margin: 0 auto 40px;
+
+        border: 5px solid rgba(255, 255, 255, 0.95);
+
+        box-shadow:
+            inset -10px -10px 20px rgba(180, 150, 100, 0.08),
+            inset 8px 8px 18px rgba(255, 255, 255, 0.7),
+            0 8px 0 rgba(205, 180, 219, 0.25),
+            0 15px 30px rgba(143, 120, 180, 0.15);
+
+        transition:
+            background-color 0.4s ease,
+            transform 0.25s ease,
+            box-shadow 0.3s ease;
+
+        animation: flutuar 3s ease-in-out infinite;
+    }
+
+    /* Brilho decorativo na bolha */
+    .bolha-principal::before {
+        content: "";
+
+        position: absolute;
+
+        top: 20px;
+        left: 30px;
+
+        width: 35px;
+        height: 17px;
+
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.65);
+
+        transform: rotate(-35deg);
+
+        pointer-events: none;
+    }
+
+    /* Flutuação */
+    @keyframes flutuar {
+        0%, 100% {
+            translate: 0 0;
         }
 
+        50% {
+            translate: 0 -10px;
+        }
+    }
 
-
-        * {
-            box-sizing: border-box;
+    /* Entrada suave */
+    @keyframes aparecer {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
         }
 
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
+    /* Opções de humor */
+    .opcoes-container {
+        display: flex;
+
+        gap: 16px;
+        flex-wrap: wrap;
+
+        align-items: stretch;
+        justify-content: center;
+
+        width: 100%;
+    }
+
+    /* Botões */
+    .botao-humor {
+        position: relative;
+
+        border: 2px solid #eee4fa;
+
+        padding: 15px 10px;
+
+        border-radius: 24px;
+
+        cursor: pointer;
+
+        background: linear-gradient(
+            145deg,
+            #ffffff,
+            #fcf8ff
+        );
+
+        color: var(--texto);
+
+        box-shadow:
+            0 5px 0 #e9def5,
+            0 8px 15px rgba(140, 115, 175, 0.07);
+
+        transition:
+            transform 0.2s ease,
+            background-color 0.3s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 6px;
+
+        width: 115px;
+        min-height: 115px;
+
+        font-family: inherit;
+    }
+
+    .botao-humor:hover {
+        transform: translateY(-5px);
+
+        border-color: var(--rosa);
+
+        box-shadow:
+            0 9px 0 #f3dbe9,
+            0 13px 20px rgba(140, 115, 175, 0.12);
+    }
+
+    .botao-humor:active {
+        transform: scale(0.96);
+    }
+
+    .botao-humor:focus-visible {
+        outline: 3px solid #a2d2ff;
+        outline-offset: 4px;
+    }
+
+    /* Emojis */
+    .botao-humor span {
+        font-size: 2.5rem;
+        line-height: 1.2;
+
+        transition: transform 0.2s ease;
+    }
+
+    .botao-humor:hover span {
+        transform: scale(1.12) rotate(-4deg);
+    }
+
+    /* Nome do humor */
+    .botao-humor label {
+        font-weight: bold;
+        font-size: 0.95rem;
+
+        cursor: pointer;
+    }
+
+    /* Cores da bolha principal */
+    .bg-feliz {
+        background: linear-gradient(
+            145deg,
+            #fff9ae,
+            #ffed91
+        ) !important;
+    }
+
+    .bg-calmo {
+        background: linear-gradient(
+            145deg,
+            #d6f5ff,
+            #a8dff0
+        ) !important;
+    }
+
+    .bg-triste {
+        background: linear-gradient(
+            145deg,
+            #e8e1ff,
+            #cbc7f4
+        ) !important;
+    }
+
+    .bg-animado {
+        background: linear-gradient(
+            145deg,
+            #ffe0f5,
+            #ffb9e9
+        ) !important;
+    }
+
+    /* Instrução */
+    .instrucao {
+        margin-top: 35px;
+        margin-bottom: 10px;
+
+        padding: 13px 16px;
+
+        background: #fff4fa;
+
+        border: 2px solid #f8e4f1;
+        border-radius: 18px;
+
+        color: #9282a5;
+
+        font-size: 0.95rem;
+        font-weight: bold;
+        line-height: 1.6;
+    }
+
+    /* Voltar ao início */
+    .voltar {
+        display: inline-block;
+
+        margin-top: 18px;
+        margin-bottom: 5px;
+
+        padding: 11px 18px;
+
+        color: #9582b1;
+        background: #faf6ff;
+
+        border: 2px solid #e8def8;
+        border-radius: 18px;
+
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: bold;
+
+        transition:
+            color 0.2s ease,
+            background 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .voltar:hover {
+        color: #76638f;
+        background: #fff0f8;
+
+        transform: translateY(-2px);
+    }
+
+    .voltar:focus-visible {
+        outline: 3px solid #a2d2ff;
+        outline-offset: 4px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
         body {
-            font-family:
-                'Segoe UI',
-                Roboto,
-                Helvetica,
-                Arial,
-                sans-serif;
-
-            background-color:
-                var(--bg-pastel);
-
-            color:
-                var(--texto);
-
-            margin: 0;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
-            min-height: 100vh;
-
-            padding: 20px;
-
-            overflow: hidden;
+            padding: 18px 12px 35px;
+            justify-content: flex-start;
         }
-
-
 
         .container {
-            text-align: center;
+            padding: 27px 17px;
+            margin-top: 8px;
+            margin-bottom: 20px;
 
-            padding: 20px;
-
-            width: 100%;
-
-            max-width: 700px;
+            border-radius: 28px;
         }
 
-
-
         h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .bolha-principal {
+            width: 155px;
+            height: 155px;
+
+            font-size: 4rem;
 
             margin-bottom: 30px;
         }
 
-
-
-        .bolha-principal {
-            width: 180px;
-
-            height: 180px;
-
-            border-radius: 50%;
-
-            background-color:
-                var(--feliz);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 5rem;
-
-            margin:
-                0 auto 40px;
-
-            box-shadow:
-                inset -10px -10px 20px
-                rgba(0, 0, 0, 0.05),
-
-                0 10px 20px
-                rgba(0, 0, 0, 0.1);
-
-            transition:
-                background-color 0.5s ease,
-                transform 0.2s ease;
-
-            animation:
-                flutuar 3s ease-in-out infinite;
-        }
-
-
-
-        @keyframes flutuar {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-
-
         .opcoes-container {
-            display: flex;
-
-            gap: 15px;
-
-            flex-wrap: wrap;
-
-            justify-content: center;
+            gap: 12px;
         }
-
-
 
         .botao-humor {
-            border: none;
+            width: calc(50% - 6px);
+            max-width: 130px;
+            min-height: 105px;
 
-            padding: 15px;
+            padding: 12px 8px;
 
             border-radius: 20px;
-
-            cursor: pointer;
-
-            background: white;
-
-            color: var(--texto);
-
-            box-shadow:
-                0 4px 6px
-                rgba(0, 0, 0, 0.05);
-
-            transition:
-                transform 0.2s,
-                background-color 0.3s;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
-            width: 100px;
-
-            min-height: 100px;
         }
-
-
-        .botao-humor:hover {
-            transform: scale(1.1);
-        }
-
-
-        .botao-humor:focus {
-            outline: 3px solid #a2d2ff;
-
-            outline-offset: 3px;
-        }
-
 
         .botao-humor span {
-            font-size: 2rem;
-
-            margin-bottom: 5px;
+            font-size: 2.1rem;
         }
-
 
         .botao-humor label {
-            font-weight: bold;
-
             font-size: 0.9rem;
-
-            cursor: pointer;
         }
-
-
-
-        .bg-feliz {
-            background-color:
-                var(--feliz) !important;
-        }
-
-
-        .bg-calmo {
-            background-color:
-                var(--calmo) !important;
-        }
-
-
-        .bg-triste {
-            background-color:
-                var(--triste) !important;
-        }
-
-
-        .bg-animado {
-            background-color:
-                var(--animado) !important;
-        }
-
-
 
         .instrucao {
-            margin-top: 40px;
-
+            margin-top: 28px;
             font-size: 0.9rem;
         }
+    }
 
-
-
-        .voltar {
-            display: inline-block;
-
-            margin-top: 15px;
-
-            color: #999;
-
-            text-decoration: underline;
-
-            font-size: 0.9rem;
-
-            transition:
-                color 0.2s,
-                transform 0.2s;
+    /* Telas com pouca altura */
+    @media (max-height: 600px) {
+        body {
+            justify-content: flex-start;
+            padding-top: 12px;
+            padding-bottom: 30px;
         }
 
-
-        .voltar:hover {
-            color: #5d6d7e;
-
-            transform: translateY(-2px);
+        .container {
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
 
-
-
-        @media (max-width: 600px) {
-
-            body {
-                padding: 15px;
-            }
-
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-
-            .bolha-principal {
-                width: 150px;
-
-                height: 150px;
-
-                font-size: 4rem;
-
-                margin-bottom: 30px;
-            }
-
-
-            .opcoes-container {
-                gap: 10px;
-            }
-
-
-            .botao-humor {
-                width: 90px;
-
-                min-height: 90px;
-
-                padding: 10px;
-            }
-
-
-            .botao-humor span {
-                font-size: 1.7rem;
-            }
+        .bolha-principal {
+            margin-bottom: 25px;
         }
+    }
 
+    /* Acessibilidade: reduzir movimentos */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
     </style>
 </head>
 

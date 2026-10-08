@@ -8,186 +8,442 @@
     <title>Qual a Cor? | Space Kids</title>
 
     <style>
-        :root {
-            --bg-pastel: #fdfcf0;
-            --texto: #6b7a8f;
+    :root {
+        --bg-pastel: #f6f1ff;
+        --texto: #756784;
 
-            --rosa: #ffb7b2;
-            --azul: #a2d2ff;
-            --verde: #b9fbc0;
-            --amarelo: #faedcb;
-            --roxo: #e1ccff;
+        --rosa: #ffb7d5;
+        --azul: #a2d2ff;
+        --verde: #b9fbc0;
+        --amarelo: #faedcb;
+        --roxo: #e1ccff;
+
+        --branco: #ffffff;
+        --lilas-escuro: #9a80bd;
+        --sombra: 0 12px 30px rgba(143, 120, 180, 0.16);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Comic Sans MS", "Chalkboard SE",
+            "Segoe UI", sans-serif;
+
+        color: var(--texto);
+
+        background:
+            radial-gradient(
+                circle at 12% 15%,
+                rgba(255, 255, 255, 0.95) 0 4px,
+                transparent 5px
+            ),
+            radial-gradient(
+                circle at 88% 24%,
+                rgba(255, 225, 242, 0.9) 0 6px,
+                transparent 7px
+            ),
+            radial-gradient(
+                circle at 18% 80%,
+                rgba(255, 241, 168, 0.7) 0 5px,
+                transparent 6px
+            ),
+            linear-gradient(
+                145deg,
+                #f6f1ff 0%,
+                #fff0f7 48%,
+                #e8f5ff 100%
+            );
+
+        background-attachment: fixed;
+
+        margin: 0;
+        padding: 30px 18px 40px;
+
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    /* Cartão principal */
+    .container {
+        position: relative;
+        z-index: 1;
+
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        min-height: auto;
+
+        margin: 15px auto 25px;
+        padding: 32px 28px;
+
+        text-align: center;
+
+        background: rgba(255, 255, 255, 0.88);
+
+        border: 3px solid rgba(255, 255, 255, 0.98);
+        border-radius: 35px;
+
+        box-shadow:
+            var(--sombra),
+            0 5px 0 rgba(205, 180, 219, 0.25);
+
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        overflow: visible;
+
+        animation: aparecer 0.6s ease-out;
+    }
+
+    /* Título */
+    h1 {
+        color: var(--lilas-escuro);
+
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        line-height: 1.4;
+
+        margin: 0 0 15px;
+
+        font-weight: 800;
+
+        text-shadow: 2px 3px 0 #f1e4ff;
+    }
+
+    /* Mensagem do jogo */
+    #mensagem {
+        min-height: 48px;
+
+        margin: 0 0 24px;
+        padding: 12px 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #fff4fa;
+        border: 2px solid #f8e4f0;
+        border-radius: 18px;
+
+        font-size: 1rem;
+        font-weight: bold;
+        line-height: 1.5;
+
+        color: #9384a6;
+
+        transition:
+            color 0.25s ease,
+            background 0.25s ease;
+
+        overflow-wrap: anywhere;
+    }
+
+    /* Cor que a criança deve identificar */
+    #corAlvo {
+        position: relative;
+
+        width: 155px;
+        height: 155px;
+
+        margin: 0 auto 30px;
+
+        border-radius: 32px;
+        border: 8px solid #ffffff;
+
+        box-shadow:
+            0 8px 0 rgba(205, 180, 219, 0.28),
+            0 12px 25px rgba(125, 105, 155, 0.14);
+
+        transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease;
+
+        animation: flutuar 3s ease-in-out infinite;
+    }
+
+    /* Opções de resposta */
+    .grade-opcoes {
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+
+        width: 100%;
+    }
+
+    .btn-cor {
+        position: relative;
+
+        width: 100%;
+        min-height: 60px;
+
+        border: 2px solid #eee4fa;
+        padding: 15px 10px;
+
+        border-radius: 20px;
+
+        font-family: inherit;
+        font-size: 1.05rem;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        background: linear-gradient(
+            145deg,
+            #ffffff,
+            #fcf8ff
+        );
+
+        color: #796b8c;
+
+        box-shadow:
+            0 5px 0 #e9def5,
+            0 8px 15px rgba(140, 115, 175, 0.07);
+
+        transition:
+            transform 0.2s ease,
+            background 0.2s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            opacity 0.2s ease;
+
+        overflow-wrap: anywhere;
+    }
+
+    .btn-cor:hover:not(:disabled) {
+        transform: translateY(-4px);
+
+        background: #fff2f8;
+        border-color: var(--rosa);
+
+        box-shadow:
+            0 8px 0 #f4d8e7,
+            0 12px 18px rgba(140, 115, 175, 0.12);
+    }
+
+    .btn-cor:active:not(:disabled) {
+        transform: scale(0.96);
+        box-shadow: 0 2px 0 #e9def5;
+    }
+
+    .btn-cor:disabled {
+        cursor: default;
+        opacity: 0.85;
+    }
+
+    /* Resposta correta */
+    .btn-correto {
+        background: var(--verde) !important;
+        border-color: #83d995 !important;
+
+        color: #477c56 !important;
+
+        box-shadow:
+            0 5px 0 #91dba0,
+            0 8px 18px rgba(100, 190, 120, 0.15) !important;
+    }
+
+    /* Próxima cor */
+    #btnProximo {
+        display: none;
+
+        width: 100%;
+        max-width: 260px;
+        min-height: 54px;
+
+        margin: 28px auto 0;
+        padding: 15px 22px;
+
+        border-radius: 50px;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+
+        background: linear-gradient(
+            135deg,
+            #a2d2ff,
+            #cdb4db
+        );
+
+        color: #ffffff;
+
+        font-family: inherit;
+        font-weight: bold;
+        font-size: 1rem;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 6px 0 #b9a5d3,
+            0 10px 18px rgba(140, 115, 175, 0.14);
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            filter 0.2s ease;
+    }
+
+    #btnProximo:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.04);
+
+        box-shadow:
+            0 9px 0 #b9a5d3,
+            0 13px 20px rgba(140, 115, 175, 0.17);
+    }
+
+    #btnProximo:active {
+        transform: translateY(2px);
+        box-shadow: 0 3px 0 #b9a5d3;
+    }
+
+    /* Link para voltar */
+    .voltar {
+        display: inline-block;
+
+        margin-top: 25px;
+        margin-bottom: 5px;
+        padding: 11px 18px;
+
+        color: #9582b1;
+        background: #faf6ff;
+
+        border: 2px solid #e8def8;
+        border-radius: 18px;
+
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: bold;
+
+        transition:
+            color 0.2s ease,
+            background 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .voltar:hover {
+        color: #76638f;
+        background: #fff0f8;
+
+        transform: translateY(-2px);
+    }
+
+    /* Animações */
+    @keyframes aparecer {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
         }
 
-        * {
-            box-sizing: border-box;
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes flutuar {
+        0%, 100% {
+            transform: translateY(0);
         }
 
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Destaque ao acertar */
+    .btn-cor:focus-visible,
+    #btnProximo:focus-visible,
+    .voltar:focus-visible {
+        outline: 3px solid #9a80bd;
+        outline-offset: 4px;
+    }
+
+    /* Celulares */
+    @media (max-width: 500px) {
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-pastel);
-            color: var(--texto);
-
-            margin: 0;
-            padding: 20px;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            min-height: 100vh;
+            padding: 18px 12px 35px;
+            justify-content: flex-start;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
-            text-align: center;
-            padding: 20px;
+            padding: 25px 17px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+
+            border-radius: 28px;
         }
 
         h1 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        #mensagem {
-            min-height: 30px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            color: #8899a6;
+            font-size: 1.45rem;
         }
 
         #corAlvo {
-            width: 150px;
-            height: 150px;
-
-            border-radius: 30px;
-            margin: 0 auto 30px;
-
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            border: 8px solid white;
-
-            transition: transform 0.3s ease;
+            width: 130px;
+            height: 130px;
+            border-radius: 27px;
+            margin-bottom: 25px;
         }
 
         .grade-opcoes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
         }
 
         .btn-cor {
-            border: none;
-            padding: 20px;
-
-            border-radius: 20px;
-
-            font-size: 1.1rem;
-            font-weight: bold;
-
-            cursor: pointer;
-
-            background: white;
-            color: #555;
-
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-
-            transition:
-                transform 0.2s,
-                background-color 0.2s,
-                opacity 0.2s;
-        }
-
-        .btn-cor:hover {
-            transform: translateY(-3px);
-        }
-
-        .btn-cor:active {
-            transform: scale(0.95);
-        }
-
-        .btn-cor:disabled {
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        .btn-correto {
-            background-color: var(--verde);
+            min-height: 55px;
+            padding: 13px 6px;
+            font-size: 0.95rem;
+            border-radius: 17px;
         }
 
         #btnProximo {
-            margin-top: 30px;
+            max-width: 100%;
+        }
+    }
 
-            padding: 12px 30px;
-
-            border-radius: 50px;
-            border: none;
-
-            background-color: var(--azul);
-            color: white;
-
-            font-weight: bold;
-            font-size: 1rem;
-
-            cursor: pointer;
-
-            display: none;
-
-            transition: transform 0.2s, background-color 0.2s;
+    /* Telas com pouca altura */
+    @media (max-height: 600px) {
+        body {
+            justify-content: flex-start;
+            padding-top: 12px;
+            padding-bottom: 30px;
         }
 
-        #btnProximo:hover {
-            transform: scale(1.05);
-            background-color: #82bfff;
+        .container {
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
+    }
 
-        .voltar {
-            display: inline-block;
-
-            margin-top: 20px;
-
-            color: #999;
-            text-decoration: underline;
-
-            font-size: 0.95rem;
-
-            transition: color 0.2s;
+    /* Respeita a preferência por menos animações */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
         }
-
-        .voltar:hover {
-            color: #555;
-        }
-
-        /* RESPONSIVIDADE */
-
-        @media (max-width: 500px) {
-
-            body {
-                padding: 10px;
-            }
-
-            .container {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 1.3rem;
-            }
-
-            #corAlvo {
-                width: 130px;
-                height: 130px;
-            }
-
-            .grade-opcoes {
-                grid-template-columns: 1fr;
-            }
-
-            .btn-cor {
-                padding: 16px;
-            }
-        }
+    }
+</style>
     </style>
 </head>
 

@@ -10,499 +10,1109 @@
 
 <style>
 
-    :root {
-        --bege-claro: #fdf6e3;
-        --azul-pastel: #a2d2ff;
-        --rosa-pastel: #ffafcc;
-        --verde-pastel: #b9fbc0;
-        --roxo-pastel: #cdb4db;
-        --texto-cinza: #5a5a5a;
-    }
+:root {
+    --fundo: #f8f4ff;
+    --branco: #ffffff;
 
-    * {
-        box-sizing: border-box;
-    }
+    --roxo: #b9a7e8;
+    --roxo-escuro: #7565a8;
 
-    body {
-        font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
-        background-color: var(--bege-claro);
-        color: var(--texto-cinza);
-        margin: 0;
-        min-height: 100vh;
-        padding: 20px;
-    }
+    --azul: #a8dcff;
+    --azul-escuro: #5d91b8;
 
+    --rosa: #ffb9d2;
+    --rosa-escuro: #b96887;
 
+    --verde: #bcebc8;
+    --verde-escuro: #5d9a69;
 
-    .menu-btn {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1000;
+    --amarelo: #ffe69a;
+    --amarelo-escuro: #a98228;
 
-        font-size: 20px;
-        cursor: pointer;
+    --texto: #5d5870;
+    --texto-claro: #77728a;
 
-        padding: 10px 18px;
-
-        background: #558ff1;
-        color: white;
-
-        border: none;
-        border-radius: 15px;
-
-        transition: 0.3s;
-    }
-
-    .menu-btn:hover {
-        transform: scale(1.05);
-    }
+    --sombra:
+        0 12px 30px rgba(113, 91, 150, 0.12);
+}
 
 
-
-    .sidebar {
-        height: 100%;
-        width: 0;
-
-        position: fixed;
-        z-index: 2000;
-
-        top: 0;
-        left: 0;
-
-        background-color: #d141fd;
-
-        overflow-x: hidden;
-
-        transition: 0.3s;
-
-        padding-top: 60px;
-
-        color: white;
-    }
-
-    .sidebar a {
-        padding: 12px 20px;
-
-        display: block;
-
-        color: white;
-
-        text-decoration: none;
-
-        cursor: pointer;
-
-        transition: 0.2s;
-    }
-
-    .sidebar a:hover {
-        background-color: #ffa2f9;
-    }
-
-    .close-btn {
-        position: absolute;
-
-        top: 10px;
-        right: 20px;
-
-        font-size: 35px;
-
-        cursor: pointer;
-    }
-
-    .tab-content {
-        display: none;
-
-        padding: 10px 20px;
-    }
-
-    .tab-content h3 {
-        margin-bottom: 10px;
-    }
-
-    .tab-content a {
-        background-color: rgba(255, 255, 255, 0.15);
-
-        border-radius: 10px;
-
-        margin-top: 5px;
-    }
+* {
+    box-sizing: border-box;
+}
 
 
-
-    header {
-        text-align: center;
-
-        margin-top: 50px;
-        margin-bottom: 40px;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-
-        color: #7b8fa1;
-
-        margin-bottom: 10px;
-    }
-
-    header p {
-        font-size: 1.1rem;
-    }
+html {
+    scroll-behavior: smooth;
+}
 
 
+body {
+    font-family:
+        "Comic Sans MS",
+        "Chalkboard SE",
+        "Trebuchet MS",
+        cursive,
+        sans-serif;
 
-    .grid-jogos {
-        display: grid;
+    background:
+        radial-gradient(circle at 10% 15%,
+            rgba(255,255,255,.95) 0 3px,
+            transparent 4px),
 
-        grid-template-columns: repeat(
-            auto-fit,
-            minmax(250px, 1fr)
+        radial-gradient(circle at 80% 10%,
+            rgba(255,255,255,.9) 0 2px,
+            transparent 3px),
+
+        radial-gradient(circle at 30% 80%,
+            rgba(255,255,255,.8) 0 2px,
+            transparent 3px),
+
+        radial-gradient(circle at 90% 75%,
+            rgba(255,255,255,.9) 0 3px,
+            transparent 4px),
+
+        linear-gradient(
+            135deg,
+            #f8f4ff,
+            #eef8ff,
+            #fff3fa
         );
 
-        gap: 25px;
+    background-size:
+        180px 180px,
+        230px 230px,
+        200px 200px,
+        250px 250px,
+        cover;
 
-        width: 100%;
-        max-width: 1000px;
+    color: var(--texto);
 
-        margin: auto;
-    }
+    margin: 0;
+    min-height: 100vh;
 
+    padding: 20px;
 
-    .card-jogo {
-        background-color: white;
+    overflow-x: hidden;
+}
 
-        border-radius: 25px;
 
-        padding: 20px;
+/* ========================================
+   BOTÃO MENU
+======================================== */
 
-        text-align: center;
+.menu-btn {
 
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+    position: fixed;
 
-        transition: transform 0.3s ease;
+    top: 20px;
+    left: 20px;
 
-        border: 4px solid transparent;
+    z-index: 1000;
 
-        cursor: pointer;
+    border: none;
 
-        text-decoration: none;
+    padding: 12px 20px;
 
-        display: flex;
+    border-radius: 50px;
 
-        flex-direction: column;
+    background:
+        linear-gradient(
+            135deg,
+            #9c86d8,
+            #bca9ed
+        );
 
-        align-items: center;
+    color: white;
 
-        justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
 
-        min-height: 300px;
-    }
+    cursor: pointer;
 
-    .card-jogo:hover {
-        transform: translateY(-10px);
+    box-shadow:
+        0 8px 18px rgba(117, 101, 168, .25);
 
-        border-color: var(--azul-pastel);
-    }
+    transition: .3s ease;
+}
 
-    .icone-jogo {
-        font-size: 4rem;
 
-        margin-bottom: 15px;
-    }
+.menu-btn:hover {
+    transform:
+        translateY(-3px)
+        scale(1.05);
 
-    .card-jogo h2 {
-        margin: 10px 0;
+    box-shadow:
+        0 12px 25px rgba(117, 101, 168, .32);
+}
 
-        font-size: 1.5rem;
-    }
 
-    .card-jogo p {
-        color: var(--texto-cinza);
+.menu-btn:active {
+    transform: scale(.97);
+}
 
-        line-height: 1.5;
-    }
 
+/* ========================================
+   MENU LATERAL
+======================================== */
 
+.sidebar {
 
-    .bolhas {
-        background-color: var(--azul-pastel);
+    height: 100%;
+    width: 0;
 
-        color: #2b5d80;
-    }
+    position: fixed;
 
-    .cores {
-        background-color: var(--rosa-pastel);
+    z-index: 2000;
 
-        color: #803d55;
-    }
+    top: 0;
+    left: 0;
 
-    .animais {
-        background-color: var(--verde-pastel);
+    background:
+        linear-gradient(
+            180deg,
+            #a88ddd,
+            #c5a9ec,
+            #e5c8e5
+        );
 
-        color: #3d8042;
-    }
+    overflow-x: hidden;
 
-    .conta {
-        background-color: var(--roxo-pastel);
+    transition: .35s ease;
 
-        color: #5a3d80;
-    }
+    padding-top: 70px;
 
+    color: white;
 
+    box-shadow:
+        8px 0 25px rgba(91, 70, 125, .2);
+}
 
-    .btn-jogar {
-        margin-top: 15px;
 
-        background-color: white;
+.sidebar::before {
+    content: "✨ 🌙 ⭐ 🚀";
 
-        padding: 10px 25px;
+    display: block;
 
-        border-radius: 50px;
+    text-align: center;
 
-        font-weight: bold;
+    font-size: 22px;
 
-        text-transform: uppercase;
+    margin-bottom: 20px;
 
-        font-size: 0.9rem;
+    white-space: nowrap;
+}
 
-        display: inline-block;
 
-        color: var(--texto-cinza);
+.sidebar a {
 
-        transition: 0.2s;
-    }
+    padding: 14px 22px;
 
-    .card-jogo:hover .btn-jogar {
-        transform: scale(1.05);
-    }
+    display: block;
 
+    color: white;
 
+    text-decoration: none;
 
-    .secao-terapias {
-        width: 100%;
-        max-width: 1000px;
+    cursor: pointer;
 
-        margin: 75px auto 30px;
+    font-weight: bold;
 
-        text-align: center;
-    }
+    border-radius: 14px;
 
+    margin: 6px 12px;
 
-    .secao-terapias h2 {
-        font-size: 2rem;
+    transition: .25s ease;
+}
 
-        color: #7b8fa1;
 
-        margin-bottom: 10px;
-    }
+.sidebar a:hover {
 
+    background:
+        rgba(255,255,255,.25);
 
-    .secao-terapias > p {
-        font-size: 1.05rem;
+    transform:
+        translateX(5px);
+}
 
-        margin-bottom: 30px;
 
-        color: var(--texto-cinza);
+.close-btn {
 
-        line-height: 1.5;
-    }
+    position: absolute;
 
+    top: 12px;
+    right: 20px;
 
+    font-size: 35px;
 
-    .grid-terapias {
-        display: grid;
+    cursor: pointer;
 
-        grid-template-columns: repeat(
+    transition: .2s;
+}
+
+
+.close-btn:hover {
+    transform: rotate(90deg);
+}
+
+
+.tab-content {
+
+    display: none;
+
+    padding: 10px 20px;
+}
+
+
+.tab-content h3 {
+    margin-bottom: 10px;
+}
+
+
+.tab-content a {
+
+    background:
+        rgba(255,255,255,.18);
+
+    border-radius: 12px;
+
+    margin-top: 5px;
+}
+
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+header {
+
+    text-align: center;
+
+    margin-top: 60px;
+    margin-bottom: 45px;
+
+    animation:
+        aparecer .8s ease;
+}
+
+
+header h1 {
+
+    position: relative;
+
+    display: inline-block;
+
+    font-size: clamp(2rem, 5vw, 3rem);
+
+    color: var(--roxo-escuro);
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        2px 3px 0 rgba(255,255,255,.8);
+}
+
+
+header h1::before {
+    content: "⭐";
+    position: absolute;
+    left: -45px;
+    top: -8px;
+    font-size: 25px;
+    animation: flutuar 3s ease-in-out infinite;
+}
+
+
+header h1::after {
+    content: "🌟";
+    position: absolute;
+    right: -45px;
+    bottom: 0;
+    font-size: 25px;
+    animation: flutuar 3s ease-in-out infinite reverse;
+}
+
+
+header p {
+
+    font-size: 1.15rem;
+
+    color: var(--texto-claro);
+
+    margin-top: 5px;
+}
+
+
+/* ========================================
+   GRID DE JOGOS
+======================================== */
+
+.grid-jogos {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(240px, 1fr)
+        );
+
+    gap: 25px;
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: auto;
+}
+
+
+/* ========================================
+   CARDS DOS JOGOS
+======================================== */
+
+.card-jogo {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        rgba(255,255,255,.92);
+
+    border-radius: 30px;
+
+    padding: 28px 22px;
+
+    text-align: center;
+
+    box-shadow: var(--sombra);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+    border: 4px solid transparent;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 310px;
+}
+
+
+/* brilho decorativo */
+
+.card-jogo::before {
+
+    content: "✦";
+
+    position: absolute;
+
+    top: 12px;
+    right: 18px;
+
+    font-size: 24px;
+
+    opacity: .45;
+
+    animation:
+        piscar 2s infinite;
+}
+
+
+.card-jogo::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    top: -45px;
+    left: -45px;
+
+    background:
+        rgba(255,255,255,.4);
+}
+
+
+.card-jogo:hover {
+
+    transform:
+        translateY(-12px)
+        rotate(-1deg);
+
+    box-shadow:
+        0 20px 40px
+        rgba(113,91,150,.2);
+}
+
+
+.icone-jogo {
+
+    font-size: 4.5rem;
+
+    margin-bottom: 12px;
+
+    transition: .3s ease;
+
+    filter:
+        drop-shadow(
+            0 5px 5px
+            rgba(0,0,0,.08)
+        );
+}
+
+
+.card-jogo:hover .icone-jogo {
+
+    transform:
+        translateY(-7px)
+        scale(1.12)
+        rotate(4deg);
+}
+
+
+.card-jogo h2 {
+
+    margin: 8px 0;
+
+    font-size: 1.45rem;
+
+    color: inherit;
+}
+
+
+.card-jogo p {
+
+    color: var(--texto);
+
+    line-height: 1.6;
+
+    max-width: 240px;
+}
+
+
+/* ========================================
+   CORES DOS JOGOS
+======================================== */
+
+.bolhas {
+
+    background:
+        linear-gradient(
+            145deg,
+            #e4f6ff,
+            #c5eaff
+        );
+
+    color: #4f83a7;
+}
+
+
+.cores {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff0f6,
+            #ffd3e4
+        );
+
+    color: #a55776;
+}
+
+
+.animais {
+
+    background:
+        linear-gradient(
+            145deg,
+            #ecfff0,
+            #c9f0d2
+        );
+
+    color: #56835e;
+}
+
+
+.conta {
+
+    background:
+        linear-gradient(
+            145deg,
+            #f3edff,
+            #dfd2fa
+        );
+
+    color: #70599b;
+}
+
+
+/* ========================================
+   BOTÕES DOS JOGOS
+======================================== */
+
+.btn-jogar {
+
+    margin-top: 16px;
+
+    background: white;
+
+    padding: 11px 25px;
+
+    border-radius: 50px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    font-size: .8rem;
+
+    display: inline-block;
+
+    color: inherit;
+
+    box-shadow:
+        0 5px 12px
+        rgba(0,0,0,.08);
+
+    transition: .25s ease;
+}
+
+
+.card-jogo:hover .btn-jogar {
+
+    transform:
+        scale(1.08);
+
+    box-shadow:
+        0 8px 18px
+        rgba(0,0,0,.12);
+}
+
+
+/* ========================================
+   SEÇÃO TERAPIAS
+======================================== */
+
+.secao-terapias {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 75px auto 30px;
+
+    text-align: center;
+}
+
+
+.secao-terapias h2 {
+
+    font-size:
+        clamp(1.8rem, 4vw, 2.3rem);
+
+    color: var(--roxo-escuro);
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        2px 2px white;
+}
+
+
+.secao-terapias > p {
+
+    font-size: 1.05rem;
+
+    margin:
+        0 auto 32px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.6;
+
+    max-width: 650px;
+}
+
+
+/* ========================================
+   GRID TERAPIAS
+======================================== */
+
+.grid-terapias {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
             auto-fit,
             minmax(220px, 1fr)
         );
 
-        gap: 20px;
+    gap: 22px;
+}
+
+
+/* ========================================
+   CARDS TERAPIAS
+======================================== */
+
+.card-terapia {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        rgba(255,255,255,.94);
+
+    border-radius: 27px;
+
+    padding: 27px 20px;
+
+    min-height: 290px;
+
+    box-shadow: var(--sombra);
+
+    transition: .35s ease;
+
+    text-decoration: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 4px solid transparent;
+}
+
+
+.card-terapia:hover {
+
+    transform:
+        translateY(-10px)
+        rotate(1deg);
+
+    border-color:
+        rgba(255,255,255,.8);
+
+    box-shadow:
+        0 18px 35px
+        rgba(113,91,150,.18);
+}
+
+
+.icone-terapia {
+
+    font-size: 3.8rem;
+
+    margin-bottom: 12px;
+
+    transition: .3s ease;
+
+    filter:
+        drop-shadow(
+            0 5px 5px
+            rgba(0,0,0,.08)
+        );
+}
+
+
+.card-terapia:hover .icone-terapia {
+
+    transform:
+        scale(1.12)
+        translateY(-5px);
+}
+
+
+.card-terapia h3 {
+
+    font-size: 1.3rem;
+
+    margin: 8px 0;
+
+    color: inherit;
+}
+
+
+.card-terapia p {
+
+    line-height: 1.55;
+
+    margin: 5px 0;
+
+    color: var(--texto);
+}
+
+
+/* ========================================
+   CORES DAS TERAPIAS
+======================================== */
+
+.nebulosa {
+
+    background:
+        linear-gradient(
+            145deg,
+            #e9f1ff,
+            #d6e5ff
+        );
+
+    color: #55749c;
+}
+
+
+.pintura {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff0f6,
+            #ffd8e7
+        );
+
+    color: #9b5874;
+}
+
+
+.respiro {
+
+    background:
+        linear-gradient(
+            145deg,
+            #edfff0,
+            #d0f2d7
+        );
+
+    color: #56815d;
+}
+
+
+.sons {
+
+    background:
+        linear-gradient(
+            145deg,
+            #f6efff,
+            #e5d8f7
+        );
+
+    color: #72598e;
+}
+
+
+/* ========================================
+   BOTÕES TERAPIAS
+======================================== */
+
+.btn-terapia {
+
+    margin-top: 15px;
+
+    background: white;
+
+    padding: 10px 22px;
+
+    border-radius: 50px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    font-size: .8rem;
+
+    color: inherit;
+
+    box-shadow:
+        0 5px 12px
+        rgba(0,0,0,.07);
+
+    transition: .25s ease;
+}
+
+
+.card-terapia:hover .btn-terapia {
+
+    transform:
+        scale(1.08);
+}
+
+
+/* ========================================
+   SEPARADOR
+======================================== */
+
+.separador {
+
+    position: relative;
+
+    width: 80%;
+
+    max-width: 700px;
+
+    height: 3px;
+
+    margin: 60px auto 35px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #cdb4db,
+            #a2d2ff,
+            #ffafcc,
+            transparent
+        );
+
+    border-radius: 50px;
+}
+
+
+.separador::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background: var(--fundo);
+
+    padding: 0 12px;
+
+    color: var(--roxo);
+}
+
+
+/* ========================================
+   RODAPÉ
+======================================== */
+
+footer {
+
+    text-align: center;
+
+    margin-top: 55px;
+
+    padding: 25px 15px;
+
+    color: var(--texto-claro);
+
+    font-size: .95rem;
+
+    line-height: 1.6;
+}
+
+
+footer::before {
+    content: "🌙 ✨ ⭐ ✨ 🌙";
+    display: block;
+    margin-bottom: 8px;
+}
+
+
+/* ========================================
+   ANIMAÇÕES
+======================================== */
+
+@keyframes flutuar {
+
+    0%, 100% {
+        transform: translateY(0);
     }
 
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+@keyframes piscar {
+
+    0%, 100% {
+        opacity: .35;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .9;
+        transform: scale(1.2);
+    }
+}
+
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   ACESSIBILIDADE
+======================================== */
+
+a:focus-visible,
+button:focus-visible {
+
+    outline:
+        4px solid #7db8e8;
+
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+
+    .menu-btn {
+
+        top: 12px;
+        left: 12px;
+
+        padding:
+            10px 16px;
+
+        font-size: 14px;
+    }
+
+
+    header {
+
+        margin-top: 65px;
+        margin-bottom: 35px;
+    }
+
+
+    header h1 {
+        font-size: 1.9rem;
+    }
+
+
+    header h1::before {
+        left: -30px;
+        font-size: 18px;
+    }
+
+
+    header h1::after {
+        right: -30px;
+        font-size: 18px;
+    }
+
+
+    header p {
+        font-size: 1rem;
+    }
+
+
+    .grid-jogos,
+    .grid-terapias {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    .card-jogo {
+
+        min-height: 270px;
+
+        padding: 25px 18px;
+    }
 
 
     .card-terapia {
-        background-color: white;
 
-        border-radius: 22px;
+        min-height: 260px;
 
-        padding: 25px 20px;
-
-        min-height: 280px;
-
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
-
-        transition: 0.3s;
-
-        text-decoration: none;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        justify-content: center;
-
-        border: 4px solid transparent;
+        padding: 25px 18px;
     }
 
 
-    .card-terapia:hover {
-        transform: translateY(-8px);
-
-        border-color: var(--roxo-pastel);
+    .icone-jogo {
+        font-size: 4rem;
     }
 
 
     .icone-terapia {
-        font-size: 3.5rem;
-
-        margin-bottom: 12px;
+        font-size: 3.4rem;
     }
 
 
-    .card-terapia h3 {
-        font-size: 1.35rem;
+    .secao-terapias {
 
-        margin: 8px 0;
+        margin-top: 55px;
     }
 
 
-    .card-terapia p {
-        line-height: 1.5;
-
-        margin: 5px 0;
+    .sidebar {
+        padding-top: 60px;
     }
+}
 
 
+/* ========================================
+   REDUÇÃO DE MOVIMENTO
+======================================== */
 
-    .nebulosa {
-        background-color: #e4edff;
+@media (prefers-reduced-motion: reduce) {
 
-        color: #4d6b91;
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: .01ms !important;
     }
-
-
-    .pintura {
-        background-color: #ffe1ec;
-
-        color: #8b4f68;
-    }
-
-
-    .respiro {
-        background-color: #e4f9e7;
-
-        color: #4c8055;
-    }
-
-
-    .sons {
-        background-color: #eee3fa;
-
-        color: #665080;
-    }
-
-
-
-    .btn-terapia {
-        margin-top: 15px;
-
-        background-color: white;
-
-        padding: 9px 20px;
-
-        border-radius: 50px;
-
-        font-weight: bold;
-
-        text-transform: uppercase;
-
-        font-size: 0.85rem;
-
-        color: var(--texto-cinza);
-
-        transition: 0.2s;
-    }
-
-
-    .card-terapia:hover .btn-terapia {
-        transform: scale(1.05);
-    }
-
-
-
-    .separador {
-        width: 80%;
-
-        max-width: 700px;
-
-        height: 2px;
-
-        margin: 60px auto 0;
-
-        background-color: #d8cde3;
-
-        border-radius: 10px;
-    }
-
-
-
-    footer {
-        text-align: center;
-
-        margin-top: 50px;
-
-        padding: 20px;
-
-        color: #7b8fa1;
-
-        font-size: 0.9rem;
-    }
-
-
-
-    @media (max-width: 600px) {
-
-        body {
-            padding: 15px;
-        }
-
-        .menu-btn {
-            top: 10px;
-            left: 10px;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-        }
-
-        .grid-jogos {
-            grid-template-columns: 1fr;
-        }
-
-        .grid-terapias {
-            grid-template-columns: 1fr;
-        }
-
-        .card-jogo {
-            min-height: 270px;
-        }
-
-        .card-terapia {
-            min-height: 250px;
-        }
-
-        .secao-terapias {
-            margin-top: 55px;
-        }
-
-    }
+}
 
 </style>
-```
+
 
 </head>
 

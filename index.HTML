@@ -6,97 +6,490 @@
     <title>Space Kids - Cadastro</title>
 
     <style>
-        body {
-            background-color: #FFDE59;
-            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
+:root {
+    --roxo: #9b7ede;
+    --roxo-claro: #d9c8ff;
 
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 30px;
-            box-shadow: 0 10px 0px #FF914D;
-            width: 350px;
-            text-align: center;
-            border: 5px solid #5271FF;
-        }
+    --rosa: #ffb8d2;
+    --rosa-claro: #ffe5ef;
 
-        h1 {
-            color: #5271FF;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+    --azul: #9ddcff;
+    --azul-claro: #e3f6ff;
 
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
+    --amarelo: #ffe28a;
+    --amarelo-claro: #fff5c7;
 
-        label {
-            display: block;
-            color: #FF66C4;
-            font-weight: bold;
-            margin-bottom: 5px;
-            margin-left: 10px;
-        }
+    --verde: #b9e8cc;
 
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 3px solid #CBEDD5;
-            border-radius: 15px;
-            box-sizing: border-box;
-            font-size: 16px;
-            outline: none;
-        }
+    --texto: #554c68;
+    --branco: #ffffff;
 
-        input:focus {
-            border-color: #5271FF;
-        }
+    --sombra: 0 15px 35px rgba(115, 91, 160, 0.18);
+}
 
-        button {
-            background-color: #7ED957;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 5px 0px #5F9E44;
-            transition: 0.2s;
-        }
 
-        button:hover {
-            transform: scale(1.03);
-        }
+/* =========================
+   PÁGINA
+========================= */
 
-        button:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0px #5F9E44;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .decoracao {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
+body {
+    position: relative;
 
-        .admin-btn {
-            display: block;
-            margin-top: 25px;
-            background-color: #5271FF;
-            box-shadow: 0 5px 0px #354fc2;
-            text-decoration: none;
-            color: white;
-            padding: 12px;
-            border-radius: 50px;
-            font-weight: bold;
-        }
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(255, 184, 210, 0.55) 0 45px,
+            transparent 46px
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(157, 220, 255, 0.55) 0 55px,
+            transparent 56px
+        ),
+
+        radial-gradient(
+            circle at 80% 85%,
+            rgba(217, 200, 255, 0.5) 0 65px,
+            transparent 66px
+        ),
+
+        linear-gradient(
+            135deg,
+            #f8f2ff,
+            #eef9ff
+        );
+
+    font-family:
+        "Comic Sans MS",
+        "Chalkboard SE",
+        "Segoe UI",
+        cursive;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 25px;
+
+    color: var(--texto);
+
+    overflow-x: hidden;
+}
+
+
+/* Estrelinhas no fundo */
+
+body::before {
+    content: "✦     ✧       ★       ✦       ✧       ★";
+
+    position: fixed;
+
+    top: 20px;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: rgba(155, 126, 222, 0.3);
+
+    font-size: 23px;
+
+    letter-spacing: 12px;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   CARTÃO
+========================= */
+
+.container {
+    position: relative;
+
+    width: min(400px, 100%);
+
+    padding: 35px 30px 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.98),
+            rgba(250,247,255,0.98)
+        );
+
+    border-radius: 35px;
+
+    border: 4px solid var(--roxo-claro);
+
+    box-shadow: var(--sombra);
+
+    text-align: center;
+
+    overflow: hidden;
+}
+
+
+/* Faixa colorida no topo */
+
+.container::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--rosa),
+            var(--roxo),
+            var(--azul),
+            var(--amarelo)
+        );
+}
+
+
+/* Estrelinha decorativa */
+
+.container::after {
+    content: "⭐";
+
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    font-size: 27px;
+
+    animation: piscar 2s ease-in-out infinite;
+}
+
+
+/* =========================
+   DECORAÇÃO
+========================= */
+
+.decoracao {
+    font-size: 48px;
+
+    margin: 5px 0 10px;
+
+    letter-spacing: 5px;
+
+    animation: flutuar 3s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 5px 5px rgba(100, 80, 140, 0.12)
+        );
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+h1 {
+    color: var(--roxo);
+
+    font-size: 27px;
+
+    margin: 5px 0 25px;
+
+    font-weight: 800;
+
+    text-shadow:
+        2px 2px 0 rgba(217, 200, 255, 0.6);
+}
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.input-group {
+    margin-bottom: 20px;
+
+    text-align: left;
+}
+
+label {
+    display: block;
+
+    color: #8066a7;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    margin-left: 8px;
+
+    font-size: 0.95rem;
+}
+
+
+/* Campos de texto */
+
+input {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 3px solid #e9e1f5;
+
+    border-radius: 18px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    color: var(--texto);
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.2s ease;
+}
+
+
+/* Placeholder */
+
+input::placeholder {
+    color: #aaa1b7;
+}
+
+
+/* Campo selecionado */
+
+input:focus {
+    border-color: var(--roxo);
+
+    box-shadow:
+        0 0 0 4px rgba(155, 126, 222, 0.15);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   BOTÃO PRINCIPAL
+========================= */
+
+button {
+    width: 100%;
+
+    margin-top: 5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b9e8cc,
+            #9ddcff
+        );
+
+    color: #4d6f69;
+
+    border: 3px solid #a1dbc0;
+
+    padding: 15px 20px;
+
+    font-size: 18px;
+
+    font-family: inherit;
+
+    font-weight: bold;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 0 #8fc8ad,
+        0 10px 20px rgba(100, 160, 140, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hover */
+
+button:hover {
+    transform: translateY(-3px) scale(1.02);
+
+    box-shadow:
+        0 8px 0 #8fc8ad,
+        0 13px 22px rgba(100, 160, 140, 0.2);
+}
+
+
+/* Clique */
+
+button:active {
+    transform: translateY(3px);
+
+    box-shadow:
+        0 3px 0 #8fc8ad;
+}
+
+
+/* =========================
+   ÁREA ADMINISTRATIVA
+========================= */
+
+.admin-btn {
+    position: relative;
+
+    display: block;
+
+    margin-top: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #bdaaff,
+            #9ddcff
+        );
+
+    color: white;
+
+    padding: 13px 15px;
+
+    border-radius: 50px;
+
+    border: 3px solid #aa94e5;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 5px 0 #8c74ca,
+        0 8px 15px rgba(120, 100, 180, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hover */
+
+.admin-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 0 #8c74ca,
+        0 12px 18px rgba(120, 100, 180, 0.2);
+}
+
+
+/* Clique */
+
+.admin-btn:active {
+    transform: translateY(3px);
+
+    box-shadow:
+        0 2px 0 #8c74ca;
+}
+
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+
+button:focus-visible,
+.admin-btn:focus-visible,
+input:focus-visible {
+    outline: 4px solid var(--amarelo);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes flutuar {
+
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+
+@keyframes piscar {
+
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.15);
+    }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 30px 20px 25px;
+
+        border-radius: 28px;
+    }
+
+    .decoracao {
+        font-size: 40px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    input {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 17px;
+    }
+}
     </style>
 </head>
 

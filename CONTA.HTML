@@ -8,288 +8,497 @@
     <title>Soma e Subtração | Space Kids</title>
 
     <style>
-        :root {
-            --bg-espacial: #f5f7fa;
-            --cor-texto: #6c7a89;
-            --cor-pergunta: #a2d2ff;
-            --cor-opcao: #ffffff;
-            --cor-sucesso: #b9fbc0;
-            --cor-tentar: #ffcfd2;
-        }
+    :root {
+        --bg-espacial: #f5f0ff;
+        --cor-texto: #766987;
+        --cor-pergunta: #9b85d5;
+        --cor-opcao: #ffffff;
+        --cor-sucesso: #b9fbc0;
+        --cor-tentar: #ffcfd2;
 
-        * {
-            box-sizing: border-box;
-        }
+        --lilas: #cdb4db;
+        --rosa: #ffc8dd;
+        --azul: #a2d2ff;
+        --amarelo: #fff1a8;
+        --verde: #b9fbc0;
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        --sombra: 0 12px 30px rgba(140, 119, 180, 0.16);
+    }
 
-            background-color: var(--bg-espacial);
+    * {
+        box-sizing: border-box;
+    }
 
-            margin: 0;
+    html {
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    body {
+        font-family: "Comic Sans MS", "Chalkboard SE",
+            "Segoe UI", sans-serif;
 
-            min-height: 100vh;
+        background:
+            radial-gradient(circle at 12% 18%,
+                rgba(255, 255, 255, 0.95) 0 3px,
+                transparent 4px),
+            radial-gradient(circle at 85% 30%,
+                rgba(255, 241, 168, 0.8) 0 5px,
+                transparent 6px),
+            linear-gradient(
+                145deg,
+                #f5f0ff 0%,
+                #fceafa 48%,
+                #e7f5ff 100%
+            );
 
-            overflow: hidden;
+        color: var(--cor-texto);
 
-            position: relative;
+        margin: 0;
+        padding: 30px 18px 40px;
 
-            padding: 20px;
-        }
+        min-height: 100vh;
+        height: auto;
+        width: 100%;
 
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
 
-        .fundo-animado {
-            position: fixed;
+        overflow-x: hidden;
+        overflow-y: auto;
 
-            top: 0;
-            left: 0;
+        position: relative;
+    }
 
-            width: 100%;
-            height: 100%;
+    /* Fundo espacial */
+    .fundo-animado {
+        position: fixed;
+        inset: 0;
 
-            z-index: -1;
+        width: 100%;
+        height: 100%;
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #f0f4ff 0%,
-                    #f5f7fa 100%
-                );
-        }
+        z-index: 0;
+        pointer-events: none;
 
-        .estrela-cadente {
-            position: absolute;
+        background:
+            radial-gradient(
+                circle at 20% 25%,
+                rgba(255, 255, 255, 0.7),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 85% 75%,
+                rgba(205, 180, 219, 0.18),
+                transparent 30%
+            ),
+            linear-gradient(
+                180deg,
+                rgba(240, 244, 255, 0.2),
+                rgba(252, 234, 250, 0.2)
+            );
+    }
 
-            width: 4px;
-            height: 4px;
+    /* Estrelas cadentes */
+    .estrela-cadente {
+        position: absolute;
 
-            background: #a2d2ff;
+        width: 5px;
+        height: 5px;
 
-            border-radius: 50%;
+        background: #ffffff;
+        border-radius: 50%;
 
+        box-shadow:
+            0 0 8px rgba(162, 210, 255, 0.9),
+            0 0 15px rgba(205, 180, 219, 0.7);
+
+        opacity: 0;
+        animation: queda 5s infinite linear;
+    }
+
+    @keyframes queda {
+        0% {
+            transform: translate(0, 0) scale(0.6);
             opacity: 0;
-
-            animation: queda 4s infinite linear;
         }
 
-        @keyframes queda {
-
-            0% {
-                transform: translate(0, 0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: translate(100px, 100px);
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 0;
-            }
+        15% {
+            opacity: 1;
         }
 
+        60% {
+            transform: translate(80px, 100px) scale(1.2);
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* Cartão principal */
+    .container {
+        position: relative;
+        z-index: 1;
+
+        background: rgba(255, 255, 255, 0.88);
+
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        padding: 35px 30px;
+
+        border-radius: 35px;
+
+        text-align: center;
+
+        box-shadow:
+            var(--sombra),
+            0 5px 0 rgba(205, 180, 219, 0.3);
+
+        width: 100%;
+        max-width: 450px;
+        min-height: auto;
+        height: auto;
+
+        margin: 10px auto 25px;
+
+        border: 3px solid rgba(255, 255, 255, 0.95);
+
+        transition: transform 0.3s ease;
+
+        overflow: visible;
+    }
+
+    /* Título */
+    .titulo {
+        color: #927db7;
+
+        font-size: clamp(1.2rem, 4vw, 1.55rem);
+        line-height: 1.5;
+
+        margin-top: 0;
+        margin-bottom: 25px;
+
+        font-weight: 800;
+
+        text-shadow: 2px 2px 0 #f3e5ff;
+    }
+
+    /* Equação matemática */
+    .equacao {
+        position: relative;
+
+        font-size: clamp(2.6rem, 10vw, 3.6rem);
+        font-weight: 900;
+
+        color: #8e9fe8;
+
+        margin: 0 auto 22px;
+        padding: 15px 10px;
+
+        letter-spacing: 4px;
+        line-height: 1.3;
+
+        background: linear-gradient(
+            135deg,
+            #f0e8ff,
+            #e5f3ff
+        );
+
+        border: 2px dashed #d5c5f0;
+        border-radius: 25px;
+
+        text-shadow: 2px 3px 0 #ffffff;
+
+        overflow-wrap: anywhere;
+    }
+
+    /* Mensagem de resposta */
+    .feedback {
+        min-height: 55px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 12px 15px;
+
+        background: #fff5fb;
+        border: 2px solid #f8e4f1;
+        border-radius: 20px;
+
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 1.5;
+
+        margin-bottom: 24px;
+
+        color: var(--cor-texto);
+
+        transition:
+            color 0.3s ease,
+            background 0.3s ease,
+            transform 0.3s ease;
+
+        overflow-wrap: anywhere;
+    }
+
+    /* Grade de respostas */
+    .grade-respostas {
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
+        width: 100%;
+    }
+
+    /* Botões das respostas */
+    .btn-resposta {
+        position: relative;
+
+        background: var(--cor-opcao);
+
+        border: 2px solid #e8def8;
+        border-radius: 22px;
+
+        min-height: 72px;
+        padding: 16px 10px;
+
+        font-family: inherit;
+        font-size: 1.5rem;
+        font-weight: 800;
+
+        color: #81739c;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 5px 0 #e8def8,
+            0 8px 15px rgba(150, 130, 190, 0.08);
+
+        transition:
+            transform 0.2s ease,
+            background 0.2s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+
+        overflow-wrap: anywhere;
+    }
+
+    .btn-resposta:hover:not(:disabled) {
+        transform: translateY(-4px);
+
+        background: #fff5fb;
+        border-color: var(--rosa);
+
+        box-shadow:
+            0 8px 0 #f5d9e8,
+            0 12px 18px rgba(150, 130, 190, 0.12);
+    }
+
+    .btn-resposta:active:not(:disabled) {
+        transform: translateY(2px);
+
+        box-shadow: 0 2px 0 #e8def8;
+    }
+
+    .btn-resposta:disabled {
+        cursor: default;
+        opacity: 0.9;
+    }
+
+    /* Botão de próximo desafio */
+    .proximo-btn {
+        margin-top: 28px;
+
+        background: linear-gradient(
+            135deg,
+            #a2d2ff,
+            #cdb4db
+        );
+
+        color: #ffffff;
+
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        padding: 16px 28px;
+
+        min-height: 54px;
+        max-width: 100%;
+
+        border-radius: 50px;
+
+        font-family: inherit;
+        font-weight: 800;
+        font-size: 1rem;
+
+        cursor: pointer;
+
+        display: none;
+
+        box-shadow:
+            0 6px 0 #b9a5d3,
+            0 10px 18px rgba(140, 119, 180, 0.15);
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            filter 0.2s ease;
+    }
+
+    .proximo-btn:hover {
+        transform: translateY(-3px);
+
+        filter: brightness(1.04);
+
+        box-shadow:
+            0 9px 0 #b9a5d3,
+            0 14px 20px rgba(140, 119, 180, 0.17);
+    }
+
+    .proximo-btn:active {
+        transform: translateY(2px);
+        box-shadow: 0 3px 0 #b9a5d3;
+    }
+
+    /* Link para voltar */
+    .voltar-btn {
+        display: inline-block;
+
+        margin-top: 25px;
+        margin-bottom: 5px;
+
+        padding: 11px 18px;
+
+        color: #9585b0;
+        background: #faf6ff;
+
+        border: 2px solid #e8def8;
+        border-radius: 18px;
+
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: bold;
+
+        transition:
+            color 0.2s ease,
+            background 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .voltar-btn:hover {
+        color: #76638f;
+        background: #fff0f8;
+
+        transform: translateY(-2px);
+    }
+
+    /* Animação de vitória */
+    @keyframes balanco {
+        0%, 100% {
+            transform: rotate(0deg);
+        }
+
+        25% {
+            transform: rotate(2deg);
+        }
+
+        75% {
+            transform: rotate(-2deg);
+        }
+    }
+
+    .vitoria {
+        animation: balanco 0.5s ease-in-out;
+    }
+
+    /* Acessibilidade do teclado */
+    .btn-resposta:focus-visible,
+    .proximo-btn:focus-visible,
+    .voltar-btn:focus-visible {
+        outline: 3px solid #8e79c7;
+        outline-offset: 4px;
+    }
+
+    /* Celulares */
+    @media (max-width: 600px) {
+        body {
+            padding: 18px 12px 35px;
+            justify-content: flex-start;
+        }
 
         .container {
-            background: rgba(255, 255, 255, 0.85);
+            padding: 26px 18px;
+            width: 100%;
 
-            backdrop-filter: blur(10px);
-
-            padding: 40px;
-
-            border-radius: 35px;
-
-            text-align: center;
-
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.05);
-
-            width: 90%;
-
-            max-width: 450px;
-
-            border: 4px solid white;
-
-            transition: transform 0.3s ease;
-        }
-
-
-        .titulo {
-            color: #8899a6;
-
-            font-size: 1.2rem;
-
-            margin-top: 0;
-        }
-
-
-        .equacao {
-            font-size: 3.5rem;
-
-            color: var(--cor-pergunta);
-
-            font-weight: bold;
-
+            margin-top: 8px;
             margin-bottom: 20px;
 
-            letter-spacing: 5px;
+            border-radius: 28px;
         }
 
-
-        .feedback {
-            min-height: 30px;
-
-            font-weight: bold;
-
-            margin-bottom: 25px;
-
-            font-size: 1.1rem;
-
-            transition: color 0.3s;
+        .titulo {
+            margin-bottom: 20px;
         }
 
+        .equacao {
+            letter-spacing: 2px;
+            padding: 12px 8px;
+            margin-bottom: 18px;
+        }
 
         .grade-respostas {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 15px;
+            gap: 12px;
         }
 
         .btn-resposta {
-            background: var(--cor-opcao);
-
-            border: 2px solid #eef2f7;
-
-            padding: 20px;
-
-            border-radius: 20px;
-
-            font-size: 1.5rem;
-
-            font-weight: bold;
-
-            color: #5a6a7a;
-
-            cursor: pointer;
-
-            transition: all 0.2s;
-
-            box-shadow:
-                0 4px 10px rgba(0, 0, 0, 0.03);
+            min-height: 65px;
+            padding: 14px 8px;
+            font-size: 1.3rem;
+            border-radius: 18px;
         }
 
-        .btn-resposta:hover:not(:disabled) {
-            transform: translateY(-3px);
-
-            border-color: #a2d2ff;
+        .feedback {
+            margin-bottom: 20px;
         }
-
-        .btn-resposta:disabled {
-            cursor: default;
-
-            opacity: 0.8;
-        }
-
 
         .proximo-btn {
-            margin-top: 30px;
+            width: 100%;
+            padding: 15px 18px;
+        }
+    }
 
-            background: #a2d2ff;
-
-            color: white;
-
-            border: none;
-
-            padding: 15px 40px;
-
-            border-radius: 50px;
-
-            font-weight: bold;
-
-            font-size: 1rem;
-
-            cursor: pointer;
-
-            display: none;
-
-            transition: 0.2s;
+    /* Telas com pouca altura */
+    @media (max-height: 600px) {
+        body {
+            justify-content: flex-start;
+            padding-top: 12px;
+            padding-bottom: 30px;
         }
 
-        .proximo-btn:hover {
-            transform: scale(1.05);
-
-            background: #8bc5f5;
+        .container {
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
+    }
 
-
-        .voltar-btn {
-            display: inline-block;
-
-            margin-top: 20px;
-
-            color: #999;
-
-            text-decoration: underline;
-
-            font-size: 0.9rem;
-
-            transition: 0.2s;
+    /* Preferência por menos animações */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
         }
-
-        .voltar-btn:hover {
-            color: #6c7a89;
-        }
-
-
-        @keyframes balanco {
-
-            0%,
-            100% {
-                transform: rotate(0);
-            }
-
-            25% {
-                transform: rotate(5deg);
-            }
-
-            75% {
-                transform: rotate(-5deg);
-            }
-        }
-
-        .vitoria {
-            animation: balanco 0.5s ease-in-out;
-        }
-
-
-        @media (max-width: 600px) {
-
-            .container {
-                padding: 25px;
-
-                width: 95%;
-            }
-
-            .equacao {
-                font-size: 2.8rem;
-            }
-
-            .btn-resposta {
-                padding: 15px;
-
-                font-size: 1.3rem;
-            }
-        }
+    }
     </style>
 </head>
 
