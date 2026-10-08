@@ -24,13 +24,27 @@ O Space Kids é uma plataforma digital desenvolvida para oferecer atividades edu
 * Visual Studio Code
 * Git e GitHub
 
-## 💻 Como executar
+💻 Como executar o projeto
 
-1. Clone o repositório.
-2. Abra a pasta no Visual Studio Code.
-3. Execute o arquivo `index.html` no navegador.
+Para visualizar o Space Kids localmente, siga as etapas:
+
+Instale o Visual Studio Code.
+Acesse o repositório do projeto no GitHub.
+Faça o download dos arquivos ou clone o repositório.
+Abra a pasta do projeto no Visual Studio Code.
+Localize o arquivo index.html ou o arquivo HTML que inicia a aplicação.
+Abra o arquivo no navegador. Se necessário, utilize a extensão Live Server para facilitar a visualização durante o desenvolvimento.
+Clonar o repositório
+
+No terminal, execute:
 
 git clone https://github.com/geeaasantos-ops/Projetos.git
+
+Entre na pasta do projeto: cd Projetos
+
+Abra a pasta no Visual Studio Code: code .
+
+Observação: se o Space Kids estiver dentro de uma subpasta do repositório, abra essa pasta específica para executar o site corretamente.
 
 ## 📌 Informações
 
